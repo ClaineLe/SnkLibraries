@@ -1,15 +1,15 @@
-using SnkFramework.Base;
 using System;
 using System.Collections.Generic;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// <para>依赖注入提供者。</para>
     /// <para>委托给 <see cref="SnkDIContainer"/> 实现</para>
     /// </summary>
-    public sealed class SnkDIProvider : SnkSingleton<ISnkDIProvider>, ISnkDIProvider
+    public sealed class SnkDIProvider : ISnkDIProvider
     {
+        internal static ISnkDIProvider Instance { get; private set; }
         /// <summary>
         /// 初始化依赖注入提供者
         /// </summary>

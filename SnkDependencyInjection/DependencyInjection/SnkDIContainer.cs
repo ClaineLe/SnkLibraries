@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using SnkFramework.Base;
-using SnkFramework.Exceptions;
 using SnkFramework.Logging;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// <para>用于依赖注入的容器类。</para>
@@ -491,7 +489,9 @@ namespace SnkFramework.DependencyInjection
                 if (!Options.CheckDisposeIfPropertyInjectionFails)
                     throw;
 
-                toReturn.DisposeIfDisposable();
+                // 类型转换检查，如果成功则调用 Dispose 方法
+                if (toReturn is IDisposable disposable)
+                    disposable.Dispose();
                 throw;
             }
             return toReturn;
@@ -588,12 +588,11 @@ namespace SnkFramework.DependencyInjection
                 var raw = resolver.Resolve();
                 if (raw == null)
                 {
-                    throw new SnkException("Resolver returned null");
+                    throw new System.Exception("Resolver returned null");
                 }
                 if (!type.IsInstanceOfType(raw))
                 {
-                    throw new SnkException("Resolver returned object type {0} which does not support interface {1}",
-                        raw.GetType().FullName, type.FullName);
+                    throw new System.Exception($"Resolver returned object type {raw.GetType().FullName} which does not support interface {type.FullName}");
                 }
 
                 resolved = raw;
@@ -646,7 +645,7 @@ namespace SnkFramework.DependencyInjection
                     return Options.TryToDetectSingletonCircularReferences;
 
                 case ResolverType.Unknown:
-                    throw new SnkException("A resolver must have a known type - error in {0}", resolver.GetType().Name);
+                    throw new System.Exception($"A resolver must have a known type - error in {resolver.GetType().Name}");
                 default:
                     throw new ArgumentOutOfRangeException(nameof(resolver), "unknown resolveType of " + resolver.ResolveType);
             }

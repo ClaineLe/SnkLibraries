@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace SnkFramework.Exceptions
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 表示在依赖注入解析过程中出现的异常。
     /// </summary>
     [Serializable]
-    public class SnkDIResolveException : SnkException
+    public class SnkDIResolveException : Exception
     {
         /// <summary>
         /// 初始化 SnkDIResolveException 类的新实例。
@@ -31,7 +31,7 @@ namespace SnkFramework.Exceptions
         /// <param name="messageFormat">错误消息的格式字符串。</param>
         /// <param name="messageFormatArguments">格式字符串的参数。</param>
         public SnkDIResolveException(string messageFormat, params object[] messageFormatArguments)
-            : base(messageFormat, messageFormatArguments)
+            : base(string.Format(messageFormat, messageFormatArguments))
         {
         }
 
@@ -42,7 +42,7 @@ namespace SnkFramework.Exceptions
         /// <param name="messageFormat">错误消息的格式字符串。</param>
         /// <param name="formatArguments">格式字符串的参数。</param>
         public SnkDIResolveException(Exception innerException, string messageFormat, params object[] formatArguments)
-            : base(innerException, messageFormat, formatArguments)
+            : base(string.Format(messageFormat, formatArguments), innerException)
         {
         }
 

@@ -41,9 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\SnkDictionaryExtensions.cs" />
-    <Compile Include="Base\SnkObjectExtensions.cs" />
-    <Compile Include="Base\SnkSingleton.cs" />
+    <Compile Include="DependencyInjection\SnkDictionaryExtensions.cs" />
     <Compile Include="DependencyInjection\ISnkDIOptions.cs" />
     <Compile Include="DependencyInjection\ISnkDIProvider.cs" />
     <Compile Include="DependencyInjection\ISnkPropertyInjector.cs" />
@@ -64,10 +62,8 @@
     <Compile Include="DependencyInjection\SnkTypeCache.cs" />
     <Compile Include="DependencyInjection\SnkTypeExtensions.cs" />
     <Compile Include="DependencyInjection\SnkUnconventionalAttribute.cs" />
-    <Compile Include="Exceptions\SnkDIResolveException.cs" />
-    <Compile Include="Exceptions\SnkException.cs" />
+    <Compile Include="DependencyInjection\SnkDIResolveException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Snk.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SnkLogging\SnkLogging.csproj">

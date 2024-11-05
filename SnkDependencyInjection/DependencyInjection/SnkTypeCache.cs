@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 一个泛型类型缓存类，用于缓存特定类型的子类。

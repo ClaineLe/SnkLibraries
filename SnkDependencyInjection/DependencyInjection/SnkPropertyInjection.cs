@@ -1,4 +1,4 @@
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 枚举类型，表示属性注入的策略。

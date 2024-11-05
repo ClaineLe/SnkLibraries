@@ -1,6 +1,6 @@
 using System;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 用于延迟创建单例实例的类。
@@ -30,7 +30,7 @@ namespace SnkFramework.DependencyInjection
                 lock (_locker)
                 {
                     // 如果_instance为null，则调用依赖注入提供的构造方法创建实例
-                    _instance = _instance ?? Snk.DIProvider.DIConstruct(_type);
+                    _instance = _instance ?? SnkDIProvider.Instance.DIConstruct(_type);
                     return _instance;
                 }
             }

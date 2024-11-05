@@ -1,7 +1,6 @@
-﻿using SnkFramework.Exceptions;
-using System;
+﻿using System;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 用于依赖注入的容器类。

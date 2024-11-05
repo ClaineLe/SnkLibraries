@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 定义依赖注入提供者的接口。

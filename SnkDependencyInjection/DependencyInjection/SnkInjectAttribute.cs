@@ -1,6 +1,6 @@
 using System;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 表示一个属性应通过依赖注入进行赋值的特性。

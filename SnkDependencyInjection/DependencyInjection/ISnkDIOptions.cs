@@ -1,6 +1,6 @@
 using System;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 定义依赖注入选项的接口。

@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using SnkFramework.Exceptions;
 using SnkFramework.Logging;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 属性注入器的实现。
@@ -55,7 +54,7 @@ namespace SnkFramework.DependencyInjection
         {
             object propertyValue;
             // 尝试从依赖注入系统中解析属性值。
-            if (Snk.DIProvider?.TryResolve(injectableProperty.PropertyType, out propertyValue) == true)
+            if (SnkDIProvider.Instance.TryResolve(injectableProperty.PropertyType, out propertyValue) == true)
             {
                 try
                 {
@@ -114,7 +113,7 @@ namespace SnkFramework.DependencyInjection
                     break;
 
                 default:
-                    throw new SnkException("unknown option for InjectIntoProperties {0}", options.InjectIntoProperties);
+                    throw new System.Exception($"unknown option for InjectIntoProperties {options.InjectIntoProperties}");
             }
             return injectableProperties;
         }

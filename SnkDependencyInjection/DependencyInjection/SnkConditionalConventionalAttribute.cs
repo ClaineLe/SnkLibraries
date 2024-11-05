@@ -1,6 +1,6 @@
 using System;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 一个抽象的属性条件化特性类，适用于属性标记，表示条件满足时才进行某些操作（如属性注入）。

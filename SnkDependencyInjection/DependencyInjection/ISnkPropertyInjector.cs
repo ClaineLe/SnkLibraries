@@ -1,4 +1,4 @@
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 定义属性注入器接口。

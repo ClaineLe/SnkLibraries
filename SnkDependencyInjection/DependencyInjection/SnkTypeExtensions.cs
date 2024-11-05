@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 提供了对类型进行操作的扩展方法。
@@ -292,13 +292,13 @@ namespace SnkFramework.DependencyInjection
                 if (pair.ServiceTypes.Count == 0)
                     continue;
 
-                var instance = Snk.DIProvider?.DIConstruct(pair.ImplementationType, (object)null);
+                var instance = SnkDIProvider.Instance.DIConstruct(pair.ImplementationType, (object)null);
                 if (instance == null)
                     continue;
 
                 foreach (var serviceType in pair.ServiceTypes)
                 {
-                    Snk.DIProvider?.RegisterSingleton(serviceType, instance);
+                    SnkDIProvider.Instance.RegisterSingleton(serviceType, instance);
                 }
             }
         }
@@ -319,7 +319,7 @@ namespace SnkFramework.DependencyInjection
                 var creationFunc = new Func<object>(() => creator.Instance);
                 foreach (var serviceType in pair.ServiceTypes)
                 {
-                    Snk.DIProvider?.RegisterSingleton(serviceType, creationFunc);
+                    SnkDIProvider.Instance.RegisterSingleton(serviceType, creationFunc);
                 }
             }
         }
@@ -334,7 +334,7 @@ namespace SnkFramework.DependencyInjection
             {
                 foreach (var serviceType in pair.ServiceTypes)
                 {
-                    Snk.DIProvider?.RegisterType(serviceType, pair.ImplementationType);
+                    SnkDIProvider.Instance.RegisterType(serviceType, pair.ImplementationType);
                 }
             }
         }

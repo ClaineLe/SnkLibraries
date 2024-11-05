@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace SnkFramework.Base
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 提供对字典进行操作的扩展方法。

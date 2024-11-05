@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 扩展方法类，用于创建创建和注册解析器

@@ -1,6 +1,6 @@
 using System;
 
-namespace SnkFramework.DependencyInjection
+namespace SnkDependencyInjection
 {
     /// <summary>
     /// 依赖注入系统的配置选项。
