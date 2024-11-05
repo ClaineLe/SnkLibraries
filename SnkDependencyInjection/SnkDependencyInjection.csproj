@@ -41,28 +41,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyInjection\SnkDictionaryExtensions.cs" />
-    <Compile Include="DependencyInjection\ISnkDIOptions.cs" />
-    <Compile Include="DependencyInjection\ISnkDIProvider.cs" />
-    <Compile Include="DependencyInjection\ISnkPropertyInjector.cs" />
-    <Compile Include="DependencyInjection\ISnkPropertyInjectorOptions.cs" />
-    <Compile Include="DependencyInjection\ISnkTypeCache.cs" />
-    <Compile Include="DependencyInjection\SnkConditionalConventionalAttribute.cs" />
-    <Compile Include="DependencyInjection\SnkConventionAttributeExtensions.cs" />
-    <Compile Include="DependencyInjection\SnkDIContainer.cs" />
-    <Compile Include="DependencyInjection\SnkDIContainer.Resolver.cs" />
-    <Compile Include="DependencyInjection\SnkDIContainerExtensions.cs" />
-    <Compile Include="DependencyInjection\SnkDIOptions.cs" />
-    <Compile Include="DependencyInjection\SnkDIProvider.cs" />
-    <Compile Include="DependencyInjection\SnkInjectAttribute.cs" />
-    <Compile Include="DependencyInjection\SnkLazySingletonCreator.cs" />
-    <Compile Include="DependencyInjection\SnkPropertyInjection.cs" />
-    <Compile Include="DependencyInjection\SnkPropertyInjector.cs" />
-    <Compile Include="DependencyInjection\SnkPropertyInjectorOptions.cs" />
-    <Compile Include="DependencyInjection\SnkTypeCache.cs" />
-    <Compile Include="DependencyInjection\SnkTypeExtensions.cs" />
-    <Compile Include="DependencyInjection\SnkUnconventionalAttribute.cs" />
-    <Compile Include="DependencyInjection\SnkDIResolveException.cs" />
+    <Compile Include="SnkDictionaryExtensions.cs" />
+    <Compile Include="ISnkDIOptions.cs" />
+    <Compile Include="ISnkDIProvider.cs" />
+    <Compile Include="ISnkPropertyInjector.cs" />
+    <Compile Include="ISnkPropertyInjectorOptions.cs" />
+    <Compile Include="ISnkTypeCache.cs" />
+    <Compile Include="SnkConditionalConventionalAttribute.cs" />
+    <Compile Include="SnkConventionAttributeExtensions.cs" />
+    <Compile Include="SnkDIContainer.cs" />
+    <Compile Include="SnkDIContainer.Resolver.cs" />
+    <Compile Include="SnkDIContainerExtensions.cs" />
+    <Compile Include="SnkDIOptions.cs" />
+    <Compile Include="SnkDIProvider.cs" />
+    <Compile Include="SnkInjectAttribute.cs" />
+    <Compile Include="SnkLazySingletonCreator.cs" />
+    <Compile Include="SnkPropertyInjection.cs" />
+    <Compile Include="SnkPropertyInjector.cs" />
+    <Compile Include="SnkPropertyInjectorOptions.cs" />
+    <Compile Include="SnkTypeCache.cs" />
+    <Compile Include="SnkTypeExtensions.cs" />
+    <Compile Include="SnkUnconventionalAttribute.cs" />
+    <Compile Include="SnkDIResolveException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
