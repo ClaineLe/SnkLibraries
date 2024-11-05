@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SnkFramework.Logging
+namespace SnkLogging
 {
     /// <summary>
     /// 定义日志记录器的接口，用于记录日志信息。

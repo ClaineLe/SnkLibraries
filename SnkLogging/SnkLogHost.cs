@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SnkFramework.Logging
+namespace SnkLogging
 {
     /// <summary>
     /// 提供日志记录器的主机类，用于获取默认日志记录器和设置日志记录器工厂。

@@ -1,4 +1,4 @@
-﻿namespace SnkFramework.Logging
+﻿namespace SnkLogging
 {
     /// <summary>
     /// 定义日志记录的级别枚举。

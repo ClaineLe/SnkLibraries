@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SnkFramework.Logging
+namespace SnkLogging
 {
     /// <summary>
     /// 为 <see cref="ISnkLogger"/> 接口提供扩展方法，用于简化日志记录的操作。
