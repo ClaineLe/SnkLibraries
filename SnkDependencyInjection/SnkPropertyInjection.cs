@@ -1,22 +1,22 @@
-namespace SnkDependencyInjection
+ï»¿namespace SnkDependencyInjection
 {
     /// <summary>
-    /// Ã¶¾ÙÀàĞÍ£¬±íÊ¾ÊôĞÔ×¢ÈëµÄ²ßÂÔ¡£
+    /// æšä¸¾ç±»å‹ï¼Œè¡¨ç¤ºå±æ€§æ³¨å…¥çš„ç­–ç•¥ã€‚
     /// </summary>
     public enum SnkPropertyInjection
     {
         /// <summary>
-        /// ²»×¢ÈëÈÎºÎÊôĞÔ¡£
+        /// ä¸æ³¨å…¥ä»»ä½•å±æ€§ã€‚
         /// </summary>
         None,
 
         /// <summary>
-        /// ½ö×¢Èë´øÓĞ½Ó¿ÚÀàĞÍµÄÊôĞÔ¡£
+        /// ä»…æ³¨å…¥å¸¦æœ‰æ¥å£ç±»å‹çš„å±æ€§ã€‚
         /// </summary>
         InjectInterfaceProperties,
 
         /// <summary>
-        /// ×¢ÈëËùÓĞ½Ó¿ÚÀàĞÍµÄÊôĞÔ¡£
+        /// æ³¨å…¥æ‰€æœ‰æ¥å£ç±»å‹çš„å±æ€§ã€‚
         /// </summary>
         AllInterfaceProperties
     }

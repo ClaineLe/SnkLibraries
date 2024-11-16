@@ -1,16 +1,16 @@
-using System;
+ï»¿using System;
 
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// Ò»¸ö³éÏóµÄÊôĞÔÌõ¼ş»¯ÌØĞÔÀà£¬ÊÊÓÃÓÚÊôĞÔ±ê¼Ç£¬±íÊ¾Ìõ¼şÂú×ãÊ±²Å½øĞĞÄ³Ğ©²Ù×÷£¨ÈçÊôĞÔ×¢Èë£©¡£
+    /// ä¸€ä¸ªæŠ½è±¡çš„å±æ€§æ¡ä»¶åŒ–ç‰¹æ€§ç±»ï¼Œé€‚ç”¨äºå±æ€§æ ‡è®°ï¼Œè¡¨ç¤ºæ¡ä»¶æ»¡è¶³æ—¶æ‰è¿›è¡ŒæŸäº›æ“ä½œï¼ˆå¦‚å±æ€§æ³¨å…¥ï¼‰ã€‚
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public abstract class SnkConditionalConventionalAttribute : Attribute
     {
         /// <summary>
-        /// »ñÈ¡Ò»¸ö²¼¶ûÖµ£¬±íÊ¾µ±Ç°Ìõ¼şÊÇ·ñÂú×ã¡£
-        /// ¸ÃÊôĞÔ±ØĞëÊÇ³éÏóµÄ£¬ÒÔ±ãÃ¿¸ö¾ßÌåÊµÏÖ¿ÉÒÔ¶¨Òå×Ô¼ºµÄÌõ¼ş¼ì²éÂß¼­¡£
+        /// è·å–ä¸€ä¸ªå¸ƒå°”å€¼ï¼Œè¡¨ç¤ºå½“å‰æ¡ä»¶æ˜¯å¦æ»¡è¶³ã€‚
+        /// è¯¥å±æ€§å¿…é¡»æ˜¯æŠ½è±¡çš„ï¼Œä»¥ä¾¿æ¯ä¸ªå…·ä½“å®ç°å¯ä»¥å®šä¹‰è‡ªå·±çš„æ¡ä»¶æ£€æŸ¥é€»è¾‘ã€‚
         /// </summary>
         public abstract bool IsConditionSatisfied { get; }
     }

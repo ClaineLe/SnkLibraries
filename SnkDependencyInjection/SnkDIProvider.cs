@@ -1,20 +1,20 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// <para>ÒÀÀµ×¢ÈëÌá¹©Õß¡£</para>
-    /// <para>Î¯ÍĞ¸ø <see cref="SnkDIContainer"/> ÊµÏÖ</para>
+    /// <para>ä¾èµ–æ³¨å…¥æä¾›è€…ã€‚</para>
+    /// <para>å§”æ‰˜ç»™ <see cref="SnkDIContainer"/> å®ç°</para>
     /// </summary>
     public sealed class SnkDIProvider : ISnkDIProvider
     {
         internal static ISnkDIProvider Instance { get; private set; }
         /// <summary>
-        /// ³õÊ¼»¯ÒÀÀµ×¢ÈëÌá¹©Õß
+        /// åˆå§‹åŒ–ä¾èµ–æ³¨å…¥æä¾›è€…
         /// </summary>
-        /// <param name="options">ÒÀÀµ×¢ÈëÑ¡ÏîµÄ½Ó¿Ú¶ÔÏó</param>
-        /// <returns>ÒÀÀµ×¢ÈëÌá¹©ÕßÊµÀı½Ó¿Ú¶ÔÏó</returns>
+        /// <param name="options">ä¾èµ–æ³¨å…¥é€‰é¡¹çš„æ¥å£å¯¹è±¡</param>
+        /// <returns>ä¾èµ–æ³¨å…¥æä¾›è€…å®ä¾‹æ¥å£å¯¹è±¡</returns>
         public static ISnkDIProvider Initialize(ISnkDIOptions options = null)
         {
             if (Instance != null)
@@ -36,83 +36,83 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¼ì²éÊÇ·ñ¿ÉÒÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// æ£€æŸ¥æ˜¯å¦å¯ä»¥è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¼ì²éµÄÀàĞÍ¡£</typeparam>
-        /// <returns>Èç¹û¿ÉÒÔ½âÎö£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <typeparam name="T">è¦æ£€æŸ¥çš„ç±»å‹ã€‚</typeparam>
+        /// <returns>å¦‚æœå¯ä»¥è§£æï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool CanResolve<T>() where T : class
         {
             return _provider.CanResolve<T>();
         }
 
         /// <summary>
-        /// ¼ì²éÊÇ·ñ¿ÉÒÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// æ£€æŸ¥æ˜¯å¦å¯ä»¥è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª¼ì²éµÄÀàĞÍ¡£</param>
-        /// <returns>Èç¹û¿ÉÒÔ½âÎö£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦æ£€æŸ¥çš„ç±»å‹ã€‚</param>
+        /// <returns>å¦‚æœå¯ä»¥è§£æï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool CanResolve(Type type)
         {
             return _provider.CanResolve(type);
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// å°è¯•è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª½âÎöµÄÀàĞÍ¡£</typeparam>
-        /// <param name="resolved">½âÎöºóµÄÊµÀı¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <typeparam name="T">è¦è§£æçš„ç±»å‹ã€‚</typeparam>
+        /// <param name="resolved">è§£æåçš„å®ä¾‹ã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool TryResolve<T>(out T resolved) where T : class
         {
             return _provider.TryResolve(out resolved);
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// å°è¯•è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <param name="resolved">½âÎöºóµÄÊµÀı¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <param name="resolved">è§£æåçš„å®ä¾‹ã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool TryResolve(Type type, out object resolved)
         {
             return _provider.TryResolve(type, out resolved);
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¼¯ºÏ¡£
+        /// å°è¯•è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹é›†åˆã€‚
         /// </summary>
-        /// <typeparam name="T">Òª½âÎöµÄÀàĞÍ¡£</typeparam>
-        /// <param name="resolved">½âÎöºóµÄÊµÀı¼¯ºÏ¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <typeparam name="T">è¦è§£æçš„ç±»å‹ã€‚</typeparam>
+        /// <param name="resolved">è§£æåçš„å®ä¾‹é›†åˆã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool TryResolves<T>(out IEnumerable<T> resolved) where T : class
         {
             return _provider.TryResolves(out resolved);
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¼¯ºÏ¡£
+        /// å°è¯•è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹é›†åˆã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <param name="resolved">½âÎöºóµÄÊµÀı¼¯ºÏ¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <param name="resolved">è§£æåçš„å®ä¾‹é›†åˆã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool TryResolves(Type type, out IEnumerable<object> resolved)
         {
             return _provider.TryResolves(out resolved);
         }
         /// <summary>
-        /// ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª½âÎöµÄÀàĞÍ¡£</typeparam>
-        /// <returns>½âÎöºóµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦è§£æçš„ç±»å‹ã€‚</typeparam>
+        /// <returns>è§£æåçš„å®ä¾‹ã€‚</returns>
         public T Resolve<T>() where T : class
         {
             return _provider.Resolve<T>();
         }
 
         /// <summary>
-        /// ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <returns>½âÎöºóµÄÊµÀı¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <returns>è§£æåçš„å®ä¾‹ã€‚</returns>
         public object Resolve(Type type)
         {
             return _provider.Resolve(type);
@@ -120,70 +120,70 @@ namespace SnkDependencyInjection
 
 
         /// <summary>
-        /// ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¼¯ºÏ¡£
+        /// è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹é›†åˆã€‚
         /// </summary>
-        /// <typeparam name="T">Òª½âÎöµÄÀàĞÍ¡£</typeparam>
-        /// <returns>½âÎöºóµÄÊµÀı¼¯ºÏ¡£</returns>
+        /// <typeparam name="T">è¦è§£æçš„ç±»å‹ã€‚</typeparam>
+        /// <returns>è§£æåçš„å®ä¾‹é›†åˆã€‚</returns>
         public IEnumerable<T> Resolves<T>() where T : class
         {
             return _provider.Resolves<T>();
         }
 
         /// <summary>
-        /// ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¼¯ºÏ¡£
+        /// è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹é›†åˆã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <returns>½âÎöºóµÄÊµÀı¼¯ºÏ¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <returns>è§£æåçš„å®ä¾‹é›†åˆã€‚</returns>
         public IEnumerable<object> Resolves(Type type)
         {
             return _provider.Resolves(type);
         }
 
         /// <summary>
-        /// »ñÈ¡Ö¸¶¨ÀàĞÍµÄµ¥ÀıÊµÀı¡£
+        /// è·å–æŒ‡å®šç±»å‹çš„å•ä¾‹å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª»ñÈ¡µÄÀàĞÍ¡£</typeparam>
-        /// <returns>µ¥ÀıÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦è·å–çš„ç±»å‹ã€‚</typeparam>
+        /// <returns>å•ä¾‹å®ä¾‹ã€‚</returns>
         public T GetSingleton<T>() where T : class
         {
             return _provider.GetSingleton<T>();
         }
 
         /// <summary>
-        /// »ñÈ¡Ö¸¶¨ÀàĞÍµÄµ¥ÀıÊµÀı¡£
+        /// è·å–æŒ‡å®šç±»å‹çš„å•ä¾‹å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª»ñÈ¡µÄÀàĞÍ¡£</param>
-        /// <returns>µ¥ÀıÊµÀı¡£</returns>
+        /// <param name="type">è¦è·å–çš„ç±»å‹ã€‚</param>
+        /// <returns>å•ä¾‹å®ä¾‹ã€‚</returns>
         public object GetSingleton(Type type)
         {
             return _provider.GetSingleton(type);
         }
 
         /// <summary>
-        /// ´´½¨Ö¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// åˆ›å»ºæŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª´´½¨µÄÀàĞÍ¡£</typeparam>
-        /// <returns>´´½¨µÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦åˆ›å»ºçš„ç±»å‹ã€‚</typeparam>
+        /// <returns>åˆ›å»ºçš„å®ä¾‹ã€‚</returns>
         public T Create<T>() where T : class
         {
             return _provider.Create<T>();
         }
 
         /// <summary>
-        /// ´´½¨Ö¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// åˆ›å»ºæŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª´´½¨µÄÀàĞÍ¡£</param>
-        /// <returns>´´½¨µÄÊµÀı¡£</returns>
+        /// <param name="type">è¦åˆ›å»ºçš„ç±»å‹ã€‚</param>
+        /// <returns>åˆ›å»ºçš„å®ä¾‹ã€‚</returns>
         public object Create(Type type)
         {
             return _provider.Create(type);
         }
 
         /// <summary>
-        /// ×¢²áÀàĞÍÓ³Éä¡£
+        /// æ³¨å†Œç±»å‹æ˜ å°„ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">Ô´ÀàĞÍ¡£</typeparam>
-        /// <typeparam name="TToConstruct">Ä¿±êÀàĞÍ¡£</typeparam>
+        /// <typeparam name="TInterface">æºç±»å‹ã€‚</typeparam>
+        /// <typeparam name="TToConstruct">ç›®æ ‡ç±»å‹ã€‚</typeparam>
         public void RegisterType<TInterface, TToConstruct>()
             where TInterface : class
             where TToConstruct : class, TInterface
@@ -192,163 +192,163 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ×¢²áÀàĞÍÓ³Éä¡£
+        /// æ³¨å†Œç±»å‹æ˜ å°„ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàĞÍ¡£</typeparam>
-        /// <param name="constructor">¹¹Ôìº¯ÊıÎ¯ÍĞ¡£</param>
+        /// <typeparam name="TInterface">æ¥å£ç±»å‹ã€‚</typeparam>
+        /// <param name="constructor">æ„é€ å‡½æ•°å§”æ‰˜ã€‚</param>
         public void RegisterType<TInterface>(Func<TInterface> constructor) where TInterface : class
         {
             _provider.RegisterType(constructor);
         }
 
         /// <summary>
-        /// ×¢²áÀàĞÍÓ³Éä¡£
+        /// æ³¨å†Œç±»å‹æ˜ å°„ã€‚
         /// </summary>
-        /// <param name="t">ÀàĞÍ¡£</param>
-        /// <param name="constructor">¹¹Ôìº¯ÊıÎ¯ÍĞ¡£</param>
+        /// <param name="t">ç±»å‹ã€‚</param>
+        /// <param name="constructor">æ„é€ å‡½æ•°å§”æ‰˜ã€‚</param>
         public void RegisterType(Type t, Func<object> constructor)
         {
             _provider.RegisterType(t, constructor);
         }
 
         /// <summary>
-        /// ×¢²áÀàĞÍÓ³Éä¡£
+        /// æ³¨å†Œç±»å‹æ˜ å°„ã€‚
         /// </summary>
-        /// <param name="tFrom">Ô´ÀàĞÍ¡£</param>
-        /// <param name="tTo">Ä¿±êÀàĞÍ¡£</param>
+        /// <param name="tFrom">æºç±»å‹ã€‚</param>
+        /// <param name="tTo">ç›®æ ‡ç±»å‹ã€‚</param>
         public void RegisterType(Type tFrom, Type tTo)
         {
             _provider.RegisterType(tFrom, tTo);
         }
 
         /// <summary>
-        /// ×¢²áµ¥ÀıÊµÀı¡£
+        /// æ³¨å†Œå•ä¾‹å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàĞÍ¡£</typeparam>
-        /// <param name="theObject">µ¥ÀıÊµÀı¡£</param>
+        /// <typeparam name="TInterface">æ¥å£ç±»å‹ã€‚</typeparam>
+        /// <param name="theObject">å•ä¾‹å®ä¾‹ã€‚</param>
         public void RegisterSingleton<TInterface>(TInterface theObject) where TInterface : class
         {
             _provider.RegisterSingleton(theObject);
         }
 
         /// <summary>
-        /// ×¢²áµ¥ÀıÊµÀı¡£
+        /// æ³¨å†Œå•ä¾‹å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="tInterface">½Ó¿ÚÀàĞÍ¡£</param>
-        /// <param name="theObject">µ¥ÀıÊµÀı¡£</param>
+        /// <param name="tInterface">æ¥å£ç±»å‹ã€‚</param>
+        /// <param name="theObject">å•ä¾‹å®ä¾‹ã€‚</param>
         public void RegisterSingleton(Type tInterface, object theObject)
         {
             _provider.RegisterSingleton(tInterface, theObject);
         }
 
         /// <summary>
-        /// ×¢²áµ¥ÀıÊµÀı¡£
+        /// æ³¨å†Œå•ä¾‹å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàĞÍ¡£</typeparam>
-        /// <param name="theConstructor">¹¹Ôìº¯ÊıÎ¯ÍĞ¡£</param>
+        /// <typeparam name="TInterface">æ¥å£ç±»å‹ã€‚</typeparam>
+        /// <param name="theConstructor">æ„é€ å‡½æ•°å§”æ‰˜ã€‚</param>
         public void RegisterSingleton<TInterface>(Func<TInterface> theConstructor) where TInterface : class
         {
             _provider.RegisterSingleton(theConstructor);
         }
 
         /// <summary>
-        /// ×¢²áµ¥ÀıÊµÀı¡£
+        /// æ³¨å†Œå•ä¾‹å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="tInterface">½Ó¿ÚÀàĞÍ¡£</param>
-        /// <param name="theConstructor">¹¹Ôìº¯ÊıÎ¯ÍĞ¡£</param>
+        /// <param name="tInterface">æ¥å£ç±»å‹ã€‚</param>
+        /// <param name="theConstructor">æ„é€ å‡½æ•°å§”æ‰˜ã€‚</param>
         public void RegisterSingleton(Type tInterface, Func<object> theConstructor)
         {
             _provider.RegisterSingleton(tInterface, theConstructor);
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¹¹ÔìµÄÀàĞÍ¡£</typeparam>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦æ„é€ çš„ç±»å‹ã€‚</typeparam>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public T DIConstruct<T>() where T : class
         {
             return _provider.DIConstruct<T>((IDictionary<string, object>)null);
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¹¹ÔìµÄÀàĞÍ¡£</typeparam>
-        /// <param name="arguments">²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦æ„é€ çš„ç±»å‹ã€‚</typeparam>
+        /// <param name="arguments">å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public T DIConstruct<T>(IDictionary<string, object> arguments) where T : class
         {
             return _provider.DIConstruct<T>(arguments);
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¹¹ÔìµÄÀàĞÍ¡£</typeparam>
-        /// <param name="arguments">²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦æ„é€ çš„ç±»å‹ã€‚</typeparam>
+        /// <param name="arguments">å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public T DIConstruct<T>(params object[] arguments) where T : class
         {
             return _provider.DIConstruct<T>(arguments);
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¹¹ÔìµÄÀàĞÍ¡£</typeparam>
-        /// <param name="arguments">²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦æ„é€ çš„ç±»å‹ã€‚</typeparam>
+        /// <param name="arguments">å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public T DIConstruct<T>(object arguments) where T : class
         {
             return _provider.DIConstruct<T>(arguments);
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public object DIConstruct(Type type)
         {
             return _provider.DIConstruct(type, (IDictionary<string, object>)null);
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <param name="arguments">²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <param name="arguments">å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public object DIConstruct(Type type, IDictionary<string, object> arguments)
         {
             return _provider.DIConstruct(type, arguments);
         }
         
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <param name="arguments">²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <param name="arguments">å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public object DIConstruct(Type type, object arguments)
         {
             return _provider.DIConstruct(type, arguments);
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <param name="arguments">²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <param name="arguments">å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public object DIConstruct(Type type, params object[] arguments)
         {
             return _provider.DIConstruct(type, arguments);
         }
 
         /// <summary>
-        /// Çå¿ÕËùÓĞ½âÎöÆ÷
+        /// æ¸…ç©ºæ‰€æœ‰è§£æå™¨
         /// </summary>
         public void CleanAllResolvers()
         {
@@ -356,9 +356,9 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ´´½¨×ÓÈİÆ÷¡£
+        /// åˆ›å»ºå­å®¹å™¨ã€‚
         /// </summary>
-        /// <returns>×ÓÈİÆ÷ÊµÀı¡£</returns>
+        /// <returns>å­å®¹å™¨å®ä¾‹ã€‚</returns>
         public ISnkDIProvider CreateChildContainer()
         {
             return _provider.CreateChildContainer();

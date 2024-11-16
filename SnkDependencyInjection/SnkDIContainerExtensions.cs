@@ -1,21 +1,21 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// À©Õ¹·½·¨Àà£¬ÓÃÓÚ´´½¨´´½¨ºÍ×¢²á½âÎöÆ÷
+    /// æ‰©å±•æ–¹æ³•ç±»ï¼Œç”¨äºŽåˆ›å»ºåˆ›å»ºå’Œæ³¨å†Œè§£æžå™¨
     /// </summary>
     public static class SnkDIContainerExtensions
     {
         /// <summary>
-        /// ´´½¨½âÎöÆ÷·½·¨£¬ÓÃÓÚ¹¹ÔìÐèÒªÒ»¸ö²ÎÊýµÄ½âÎöÆ÷½Ó¿Ú¶ÔÏó¡£
+        /// åˆ›å»ºè§£æžå™¨æ–¹æ³•ï¼Œç”¨äºŽæž„é€ éœ€è¦ä¸€ä¸ªå‚æ•°çš„è§£æžå™¨æŽ¥å£å¯¹è±¡ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÄµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÈÝÆ÷Ìá¹©Õß£¬¸ºÔð½âÎöÒÀÀµÏî¡£</param>
-        /// <param name="typedConstructor">Ò»¸ö°üº¬µ¥¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
-        /// <returns>·µ»ØÒ»¸öº¯Êý£¬¸Ãº¯Êý½âÎö²¢·µ»Ø½Ó¿ÚÀàÐÍµÄÊµÀý¡£</returns>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥å®¹å™¨æä¾›è€…ï¼Œè´Ÿè´£è§£æžä¾èµ–é¡¹ã€‚</param>
+        /// <param name="typedConstructor">ä¸€ä¸ªåŒ…å«å•ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
+        /// <returns>è¿”å›žä¸€ä¸ªå‡½æ•°ï¼Œè¯¥å‡½æ•°è§£æžå¹¶è¿”å›žæŽ¥å£ç±»åž‹çš„å®žä¾‹ã€‚</returns>
         private static Func<TInterface> CreateResolver<TInterface, TParameter1>(
             this ISnkDIProvider provider,
             Func<TParameter1, TInterface> typedConstructor)
@@ -30,14 +30,14 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ´´½¨½âÎöÆ÷·½·¨£¬ÓÃÓÚ¹¹ÔìÐèÒªÁ½¸ö²ÎÊýµÄ½âÎöÆ÷½Ó¿Ú¶ÔÏó¡£
+        /// åˆ›å»ºè§£æžå™¨æ–¹æ³•ï¼Œç”¨äºŽæž„é€ éœ€è¦ä¸¤ä¸ªå‚æ•°çš„è§£æžå™¨æŽ¥å£å¯¹è±¡ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÄµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÄµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÈÝÆ÷Ìá¹©Õß£¬¸ºÔð½âÎöÒÀÀµÏî¡£</param>
-        /// <param name="typedConstructor">Ò»¸ö°üº¬Á½¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
-        /// <returns>·µ»ØÒ»¸öº¯Êý£¬¸Ãº¯Êý½âÎö²¢·µ»Ø½Ó¿ÚÀàÐÍµÄÊµÀý¡£</returns>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°çš„ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥å®¹å™¨æä¾›è€…ï¼Œè´Ÿè´£è§£æžä¾èµ–é¡¹ã€‚</param>
+        /// <param name="typedConstructor">ä¸€ä¸ªåŒ…å«ä¸¤ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
+        /// <returns>è¿”å›žä¸€ä¸ªå‡½æ•°ï¼Œè¯¥å‡½æ•°è§£æžå¹¶è¿”å›žæŽ¥å£ç±»åž‹çš„å®žä¾‹ã€‚</returns>
         private static Func<TInterface> CreateResolver<TInterface, TParameter1, TParameter2>(
             this ISnkDIProvider provider,
             Func<TParameter1, TParameter2, TInterface> typedConstructor)
@@ -54,15 +54,15 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ´´½¨½âÎöÆ÷·½·¨£¬ÓÃÓÚ¹¹ÔìÐèÒªÈý¸ö²ÎÊýµÄ½âÎöÆ÷½Ó¿Ú¶ÔÏó¡£
+        /// åˆ›å»ºè§£æžå™¨æ–¹æ³•ï¼Œç”¨äºŽæž„é€ éœ€è¦ä¸‰ä¸ªå‚æ•°çš„è§£æžå™¨æŽ¥å£å¯¹è±¡ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÄµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÄµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÄµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÈÝÆ÷Ìá¹©Õß£¬¸ºÔð½âÎöÒÀÀµÏî¡£</param>
-        /// <param name="typedConstructor">Ò»¸ö°üº¬Èý¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
-        /// <returns>·µ»ØÒ»¸öº¯Êý£¬¸Ãº¯Êý½âÎö²¢·µ»Ø½Ó¿ÚÀàÐÍµÄÊµÀý¡£</returns>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°çš„ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°çš„ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥å®¹å™¨æä¾›è€…ï¼Œè´Ÿè´£è§£æžä¾èµ–é¡¹ã€‚</param>
+        /// <param name="typedConstructor">ä¸€ä¸ªåŒ…å«ä¸‰ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
+        /// <returns>è¿”å›žä¸€ä¸ªå‡½æ•°ï¼Œè¯¥å‡½æ•°è§£æžå¹¶è¿”å›žæŽ¥å£ç±»åž‹çš„å®žä¾‹ã€‚</returns>
         private static Func<TInterface> CreateResolver<TInterface, TParameter1, TParameter2, TParameter3>(
             this ISnkDIProvider provider,
             Func<TParameter1, TParameter2, TParameter3, TInterface> typedConstructor)
@@ -81,16 +81,16 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ´´½¨½âÎöÆ÷·½·¨£¬ÓÃÓÚ¹¹ÔìÐèÒªËÄ¸ö²ÎÊýµÄ½âÎöÆ÷½Ó¿Ú¶ÔÏó¡£
+        /// åˆ›å»ºè§£æžå™¨æ–¹æ³•ï¼Œç”¨äºŽæž„é€ éœ€è¦å››ä¸ªå‚æ•°çš„è§£æžå™¨æŽ¥å£å¯¹è±¡ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÄµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÄµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÄµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter4">¹¹Ôìº¯ÊýµÄµÚËÄ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÈÝÆ÷Ìá¹©Õß£¬¸ºÔð½âÎöÒÀÀµÏî¡£</param>
-        /// <param name="typedConstructor">Ò»¸ö°üº¬ËÄ¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
-        /// <returns>·µ»ØÒ»¸öº¯Êý£¬¸Ãº¯Êý½âÎö²¢·µ»Ø½Ó¿ÚÀàÐÍµÄÊµÀý¡£</returns>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°çš„ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°çš„ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter4">æž„é€ å‡½æ•°çš„ç¬¬å››ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥å®¹å™¨æä¾›è€…ï¼Œè´Ÿè´£è§£æžä¾èµ–é¡¹ã€‚</param>
+        /// <param name="typedConstructor">ä¸€ä¸ªåŒ…å«å››ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
+        /// <returns>è¿”å›žä¸€ä¸ªå‡½æ•°ï¼Œè¯¥å‡½æ•°è§£æžå¹¶è¿”å›žæŽ¥å£ç±»åž‹çš„å®žä¾‹ã€‚</returns>
         private static Func<TInterface> CreateResolver<TInterface, TParameter1, TParameter2, TParameter3, TParameter4>(
             this ISnkDIProvider provider,
             Func<TParameter1, TParameter2, TParameter3, TParameter4, TInterface> typedConstructor)
@@ -111,17 +111,17 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ´´½¨½âÎöÆ÷·½·¨£¬ÓÃÓÚ¹¹ÔìÐèÒªÎå¸ö²ÎÊýµÄ½âÎöÆ÷½Ó¿Ú¶ÔÏó¡£
+        /// åˆ›å»ºè§£æžå™¨æ–¹æ³•ï¼Œç”¨äºŽæž„é€ éœ€è¦äº”ä¸ªå‚æ•°çš„è§£æžå™¨æŽ¥å£å¯¹è±¡ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÄµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÄµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÄµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter4">¹¹Ôìº¯ÊýµÄµÚËÄ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter5">¹¹Ôìº¯ÊýµÄµÚÎå¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÈÝÆ÷Ìá¹©Õß£¬¸ºÔð½âÎöÒÀÀµÏî¡£</param>
-        /// <param name="typedConstructor">Ò»¸ö°üº¬Îå¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
-        /// <returns>·µ»ØÒ»¸öº¯Êý£¬¸Ãº¯Êý½âÎö²¢·µ»Ø½Ó¿ÚÀàÐÍµÄÊµÀý¡£</returns>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°çš„ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°çš„ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter4">æž„é€ å‡½æ•°çš„ç¬¬å››ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter5">æž„é€ å‡½æ•°çš„ç¬¬äº”ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥å®¹å™¨æä¾›è€…ï¼Œè´Ÿè´£è§£æžä¾èµ–é¡¹ã€‚</param>
+        /// <param name="typedConstructor">ä¸€ä¸ªåŒ…å«äº”ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
+        /// <returns>è¿”å›žä¸€ä¸ªå‡½æ•°ï¼Œè¯¥å‡½æ•°è§£æžå¹¶è¿”å›žæŽ¥å£ç±»åž‹çš„å®žä¾‹ã€‚</returns>
         private static Func<TInterface> CreateResolver<TInterface, TParameter1, TParameter2, TParameter3, TParameter4, TParameter5>(
             this ISnkDIProvider provider,
             Func<TParameter1, TParameter2, TParameter3, TParameter4, TParameter5, TInterface> typedConstructor)
@@ -144,12 +144,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¹¹½¨Ò»¸öÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// æž„å»ºä¸€ä¸ªç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TType">¾ßÌåÊµÏÖÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©Õß¡£</param>
-        /// <returns>¹¹½¨µÄÊµÀý¡£</returns>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TType">å…·ä½“å®žçŽ°ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…ã€‚</param>
+        /// <returns>æž„å»ºçš„å®žä¾‹ã€‚</returns>
         public static TType ConstructAndRegisterSingleton<TInterface, TType>(this ISnkDIProvider provider)
             where TInterface : class
             where TType : class, TInterface
@@ -160,12 +160,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ²ÎÊý¹¹½¨Ò»¸öÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å‚æ•°æž„å»ºä¸€ä¸ªç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TType">¾ßÌåÊµÏÖÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="arguments">ÓÃÓÚÊµÀý¹¹ÔìµÄÃüÃû²ÎÊý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TType">å…·ä½“å®žçŽ°ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="arguments">ç”¨äºŽå®žä¾‹æž„é€ çš„å‘½åå‚æ•°ã€‚</param>
         /// <returns></returns>
         public static TType ConstructAndRegisterSingleton<TInterface, TType>(this ISnkDIProvider provider, IDictionary<string, object> arguments)
             where TInterface : class
@@ -177,11 +177,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃµ¥¸ö¶ÔÏó×÷Îª²ÎÊý¹¹½¨Ò»¸öÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å•ä¸ªå¯¹è±¡ä½œä¸ºå‚æ•°æž„å»ºä¸€ä¸ªç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="arguments">ÓÃÓÚÊµÀý¹¹ÔìµÄ¶ÔÏó²ÎÊý¡£</param>
-        /// <returns>¹¹½¨µÄÊµÀý¡£</returns>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="arguments">ç”¨äºŽå®žä¾‹æž„é€ çš„å¯¹è±¡å‚æ•°ã€‚</param>
+        /// <returns>æž„å»ºçš„å®žä¾‹ã€‚</returns>
         public static TType ConstructAndRegisterSingleton<TInterface, TType>(this ISnkDIProvider provider, object arguments)
             where TInterface : class
             where TType : class, TInterface
@@ -192,11 +192,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ¶à¸ö²ÎÊý¹¹½¨Ò»¸öÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å¤šä¸ªå‚æ•°æž„å»ºä¸€ä¸ªç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="arguments">ÓÃÓÚÊµÀý¹¹ÔìµÄ²ÎÊýÊý×é¡£</param>
-        /// <returns>¹¹½¨µÄÊµÀý¡£</returns>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="arguments">ç”¨äºŽå®žä¾‹æž„é€ çš„å‚æ•°æ•°ç»„ã€‚</param>
+        /// <returns>æž„å»ºçš„å®žä¾‹ã€‚</returns>
         public static TType ConstructAndRegisterSingleton<TInterface, TType>(this ISnkDIProvider provider, params object[] arguments)
             where TInterface : class
             where TType : class, TInterface
@@ -207,11 +207,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¹¹½¨Ò»¸ö¸ø¶¨ÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// æž„å»ºä¸€ä¸ªç»™å®šç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="type">ÒªÊµÀý»¯µÄÀàÐÍ¡£</param>
-        /// <returns>¹¹½¨µÄÊµÀý¡£</returns>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="type">è¦å®žä¾‹åŒ–çš„ç±»åž‹ã€‚</param>
+        /// <returns>æž„å»ºçš„å®žä¾‹ã€‚</returns>
         public static object ConstructAndRegisterSingleton(this ISnkDIProvider provider, Type type)
         {
             var instance = provider.DIConstruct(type);
@@ -220,12 +220,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ²ÎÊý¹¹½¨Ò»¸öÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å‚æ•°æž„å»ºä¸€ä¸ªç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="type">ÒªÊµÀý»¯µÄÀàÐÍ¡£</param>
-        /// <param name="arguments">ÓÃÓÚÊµÀý¹¹ÔìµÄÃüÃû²ÎÊý¡£</param>
-        /// <returns>¹¹½¨µÄÊµÀý¡£</returns>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="type">è¦å®žä¾‹åŒ–çš„ç±»åž‹ã€‚</param>
+        /// <param name="arguments">ç”¨äºŽå®žä¾‹æž„é€ çš„å‘½åå‚æ•°ã€‚</param>
+        /// <returns>æž„å»ºçš„å®žä¾‹ã€‚</returns>
         public static object ConstructAndRegisterSingleton(this ISnkDIProvider provider, Type type, IDictionary<string, object> arguments)
         {
             var instance = provider.DIConstruct(type, arguments);
@@ -234,12 +234,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃµ¥¸ö¶ÔÏó×÷Îª²ÎÊý¹¹½¨Ò»¸öÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å•ä¸ªå¯¹è±¡ä½œä¸ºå‚æ•°æž„å»ºä¸€ä¸ªç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="type">ÒªÊµÀý»¯µÄÀàÐÍ¡£</param>
-        /// <param name="arguments">ÓÃÓÚÊµÀý¹¹ÔìµÄ¶ÔÏó²ÎÊý¡£</param>
-        /// <returns>¹¹½¨µÄÊµÀý¡£</returns>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="type">è¦å®žä¾‹åŒ–çš„ç±»åž‹ã€‚</param>
+        /// <param name="arguments">ç”¨äºŽå®žä¾‹æž„é€ çš„å¯¹è±¡å‚æ•°ã€‚</param>
+        /// <returns>æž„å»ºçš„å®žä¾‹ã€‚</returns>
         public static object ConstructAndRegisterSingleton(this ISnkDIProvider provider, Type type, object arguments)
         {
             var instance = provider.DIConstruct(type, arguments);
@@ -248,12 +248,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ¶à¸ö²ÎÊý¹¹½¨Ò»¸öÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å¤šä¸ªå‚æ•°æž„å»ºä¸€ä¸ªç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="type">ÒªÊµÀý»¯µÄÀàÐÍ¡£</param>
-        /// <param name="arguments">ÓÃÓÚÊµÀý¹¹ÔìµÄ²ÎÊýÊý×é¡£</param>
-        /// <returns>¹¹½¨µÄÊµÀý¡£</returns>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="type">è¦å®žä¾‹åŒ–çš„ç±»åž‹ã€‚</param>
+        /// <param name="arguments">ç”¨äºŽå®žä¾‹æž„é€ çš„å‚æ•°æ•°ç»„ã€‚</param>
+        /// <returns>æž„å»ºçš„å®žä¾‹ã€‚</returns>
         public static object ConstructAndRegisterSingleton(this ISnkDIProvider provider, Type type, params object[] arguments)
         {
             var instance = provider.DIConstruct(type, arguments);
@@ -262,11 +262,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ÑÓ³Ù¹¹½¨Ò»¸öÀàÐÍµÄÊµÀý²¢×¢²áÎªµ¥Àý£¬µ±µÚÒ»´Î±»ÇëÇóÊ±²Å¹¹Ôì¡£
+        /// å»¶è¿Ÿæž„å»ºä¸€ä¸ªç±»åž‹çš„å®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ï¼Œå½“ç¬¬ä¸€æ¬¡è¢«è¯·æ±‚æ—¶æ‰æž„é€ ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TType">¾ßÌåÊµÏÖÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©Õß¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TType">å…·ä½“å®žçŽ°ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…ã€‚</param>
         public static void LazyConstructAndRegisterSingleton<TInterface, TType>(this ISnkDIProvider provider)
             where TInterface : class
             where TType : class, TInterface
@@ -275,10 +275,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃÖ¸¶¨¹¹Ôìº¯ÊýÑÓ³Ù¹¹½¨²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨æŒ‡å®šæž„é€ å‡½æ•°å»¶è¿Ÿæž„å»ºå¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">ÓÃÓÚÊµÀý»¯µÄ¹¹Ôìº¯Êý¡£</param>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">ç”¨äºŽå®žä¾‹åŒ–çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void LazyConstructAndRegisterSingleton<TInterface>(this ISnkDIProvider provider, Func<TInterface> constructor)
             where TInterface : class
         {
@@ -286,23 +286,23 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃÖ¸¶¨¹¹Ôìº¯ÊýÑÓ³Ù¹¹½¨Ò»¸öÊµÀý²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨æŒ‡å®šæž„é€ å‡½æ•°å»¶è¿Ÿæž„å»ºä¸€ä¸ªå®žä¾‹å¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="type">ÒªÊµÀý»¯µÄÀàÐÍ¡£</param>
-        /// <param name="constructor">ÓÃÓÚÊµÀý»¯µÄ¹¹Ôìº¯Êý¡£</param>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="type">è¦å®žä¾‹åŒ–çš„ç±»åž‹ã€‚</param>
+        /// <param name="constructor">ç”¨äºŽå®žä¾‹åŒ–çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void LazyConstructAndRegisterSingleton(this ISnkDIProvider provider, Type type, Func<object> constructor)
         {
             provider.RegisterSingleton(type, constructor);
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øÒ»¸ö²ÎÊýµÄ¹¹Ôìº¯ÊýÑÓ³Ù¹¹½¨²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å¸¦ä¸€ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°å»¶è¿Ÿæž„å»ºå¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯Êý²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øÒ»¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°å‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦ä¸€ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1>(this ISnkDIProvider provider, Func<TParameter1, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
@@ -312,13 +312,13 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øÁ½¸ö²ÎÊýµÄ¹¹Ôìº¯ÊýÑÓ³Ù¹¹½¨²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å¸¦ä¸¤ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°å»¶è¿Ÿæž„å»ºå¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øÁ½¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦ä¸¤ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2>(this ISnkDIProvider provider, Func<TParameter1, TParameter2, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
@@ -329,14 +329,14 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øÈý¸ö²ÎÊýµÄ¹¹Ôìº¯ÊýÑÓ³Ù¹¹½¨²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å¸¦ä¸‰ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°å»¶è¿Ÿæž„å»ºå¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øÈý¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦ä¸‰ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3>(this ISnkDIProvider provider, Func<TParameter1, TParameter2, TParameter3, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
@@ -348,15 +348,15 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øËÄ¸ö²ÎÊýµÄ¹¹Ôìº¯ÊýÑÓ³Ù¹¹½¨²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å¸¦å››ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°å»¶è¿Ÿæž„å»ºå¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter4">¹¹Ôìº¯ÊýµÚËÄ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øËÄ¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter4">æž„é€ å‡½æ•°ç¬¬å››ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦å››ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3, TParameter4>(this ISnkDIProvider provider, Func<TParameter1, TParameter2, TParameter3, TParameter4, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
@@ -369,16 +369,16 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øÎå¸ö²ÎÊýµÄ¹¹Ôìº¯ÊýÑÓ³Ù¹¹½¨²¢×¢²áÎªµ¥Àý¡£
+        /// ä½¿ç”¨å¸¦äº”ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°å»¶è¿Ÿæž„å»ºå¹¶æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter4">¹¹Ôìº¯ÊýµÚËÄ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter5">¹¹Ôìº¯ÊýµÚÎå¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øÎå¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter4">æž„é€ å‡½æ•°ç¬¬å››ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter5">æž„é€ å‡½æ•°ç¬¬äº”ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦äº”ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void LazyConstructAndRegisterSingleton<TInterface, TParameter1, TParameter2, TParameter3, TParameter4, TParameter5>(this ISnkDIProvider provider, Func<TParameter1, TParameter2, TParameter3, TParameter4, TParameter5, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
@@ -392,9 +392,9 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ×¢²áÒ»¸öÀàÐÍ£¬Ê¹Æä¿ÉÒÔÔÚÐèÒªÊ±±»¹¹Ôì¡£
+        /// æ³¨å†Œä¸€ä¸ªç±»åž‹ï¼Œä½¿å…¶å¯ä»¥åœ¨éœ€è¦æ—¶è¢«æž„é€ ã€‚
         /// </summary>
-        /// <typeparam name="TType">Òª×¢²áµÄÀàÐÍ¡£</typeparam>
+        /// <typeparam name="TType">è¦æ³¨å†Œçš„ç±»åž‹ã€‚</typeparam>
         public static void RegisterType<TType>(this ISnkDIProvider provider)
             where TType : class
         {
@@ -402,22 +402,22 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ×¢²áÒ»¸öÀàÐÍ£¬Ê¹Æä¿ÉÒÔÔÚÐèÒªÊ±±»¹¹Ôì¡£
+        /// æ³¨å†Œä¸€ä¸ªç±»åž‹ï¼Œä½¿å…¶å¯ä»¥åœ¨éœ€è¦æ—¶è¢«æž„é€ ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="tType">Òª×¢²áµÄÀàÐÍ¡£</param>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="tType">è¦æ³¨å†Œçš„ç±»åž‹ã€‚</param>
         public static void RegisterType(this ISnkDIProvider provider, Type tType)
         {
             provider.RegisterType(tType, tType);
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øÒ»¸ö²ÎÊýµÄ¹¹Ôìº¯Êý×¢²áÒ»¸öÀàÐÍ¡£
+        /// ä½¿ç”¨å¸¦ä¸€ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°æ³¨å†Œä¸€ä¸ªç±»åž‹ã€‚
         /// </summary>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯Êý²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="constructor">´øµ¥¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°å‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="constructor">å¸¦å•ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void RegisterType<TInterface, TParameter1>(this ISnkDIProvider provider, Func<TParameter1, TInterface> constructor)
            where TInterface : class
            where TParameter1 : class
@@ -427,13 +427,13 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øÁ½¸ö²ÎÊýµÄ¹¹Ôìº¯Êý×¢²áÒ»¸öÀàÐÍ¡£
+        /// ä½¿ç”¨å¸¦ä¸¤ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°æ³¨å†Œä¸€ä¸ªç±»åž‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øÁ½¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦ä¸¤ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void RegisterType<TInterface, TParameter1, TParameter2>(this ISnkDIProvider provider, Func<TParameter1, TParameter2, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
@@ -444,14 +444,14 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øÈý¸ö²ÎÊýµÄ¹¹Ôìº¯Êý×¢²áÒ»¸öÀàÐÍ¡£
+        /// ä½¿ç”¨å¸¦ä¸‰ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°æ³¨å†Œä¸€ä¸ªç±»åž‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øÈý¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦ä¸‰ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3>(this ISnkDIProvider provider, Func<TParameter1, TParameter2, TParameter3, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
@@ -463,15 +463,15 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øËÄ¸ö²ÎÊýµÄ¹¹Ôìº¯Êý×¢²áÒ»¸öÀàÐÍ¡£
+        /// ä½¿ç”¨å¸¦å››ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°æ³¨å†Œä¸€ä¸ªç±»åž‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter4">¹¹Ôìº¯ÊýµÚËÄ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øËÄ¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter4">æž„é€ å‡½æ•°ç¬¬å››ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦å››ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3, TParameter4>(this ISnkDIProvider provider, Func<TParameter1, TParameter2, TParameter3, TParameter4, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class
@@ -484,16 +484,16 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ´øÎå¸ö²ÎÊýµÄ¹¹Ôìº¯Êý×¢²áÒ»¸öÀàÐÍ¡£
+        /// ä½¿ç”¨å¸¦äº”ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°æ³¨å†Œä¸€ä¸ªç±»åž‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter1">¹¹Ôìº¯ÊýµÚÒ»¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter2">¹¹Ôìº¯ÊýµÚ¶þ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter3">¹¹Ôìº¯ÊýµÚÈý¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter4">¹¹Ôìº¯ÊýµÚËÄ¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <typeparam name="TParameter5">¹¹Ôìº¯ÊýµÚÎå¸ö²ÎÊýµÄÀàÐÍ¡£</typeparam>
-        /// <param name="provider">ÒÀÀµ×¢ÈëÌá¹©ÕßÍØÕ¹¶ÔÏó¡£</param>
-        /// <param name="constructor">´øÎå¸ö²ÎÊýµÄ¹¹Ôìº¯Êý¡£</param>
+        /// <typeparam name="TInterface">æŽ¥å£ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter1">æž„é€ å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter2">æž„é€ å‡½æ•°ç¬¬äºŒä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter3">æž„é€ å‡½æ•°ç¬¬ä¸‰ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter4">æž„é€ å‡½æ•°ç¬¬å››ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <typeparam name="TParameter5">æž„é€ å‡½æ•°ç¬¬äº”ä¸ªå‚æ•°çš„ç±»åž‹ã€‚</typeparam>
+        /// <param name="provider">ä¾èµ–æ³¨å…¥æä¾›è€…æ‹“å±•å¯¹è±¡ã€‚</param>
+        /// <param name="constructor">å¸¦äº”ä¸ªå‚æ•°çš„æž„é€ å‡½æ•°ã€‚</param>
         public static void RegisterType<TInterface, TParameter1, TParameter2, TParameter3, TParameter4, TParameter5>(this ISnkDIProvider provider, Func<TParameter1, TParameter2, TParameter3, TParameter4, TParameter5, TInterface> constructor)
             where TInterface : class
             where TParameter1 : class

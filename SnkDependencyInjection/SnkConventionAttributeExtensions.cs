@@ -1,21 +1,21 @@
-using System;
+ï»¿using System;
 using System.Linq;
 using System.Reflection;
 
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// À©Õ¹·½·¨Àà£¬ÓÃÓÚÅĞ¶ÏÀàĞÍºÍÊôĞÔÊÇ·ñ·ûºÏÔ¼¶¨µÄÌõ¼ş¡£
+    /// æ‰©å±•æ–¹æ³•ç±»ï¼Œç”¨äºåˆ¤æ–­ç±»å‹å’Œå±æ€§æ˜¯å¦ç¬¦åˆçº¦å®šçš„æ¡ä»¶ã€‚
     /// </summary>
     public static class SnkConventionAttributeExtensions
     {
         /// <summary>
-        /// ÅĞ¶ÏÒ»¸öÀàĞÍÊÇ·ñ·ûºÏÔ¼¶¨¡£ÀàĞÍ·ûºÏÔ¼¶¨µ±ÇÒ½öµ±£º
-        /// - Î´±ê¼Ç²»³£¹æÊôĞÔ
-        /// - ËùÓĞ±ê¼ÇµÄÌõ¼şÔ¼¶¨·µ»Ø true
+        /// åˆ¤æ–­ä¸€ä¸ªç±»å‹æ˜¯å¦ç¬¦åˆçº¦å®šã€‚ç±»å‹ç¬¦åˆçº¦å®šå½“ä¸”ä»…å½“ï¼š
+        /// - æœªæ ‡è®°ä¸å¸¸è§„å±æ€§
+        /// - æ‰€æœ‰æ ‡è®°çš„æ¡ä»¶çº¦å®šè¿”å› true
         /// </summary>
-        /// <param name="candidateType">´ı¼ì²éµÄÀàĞÍ¡£</param>
-        /// <returns>Èç¹ûÀàĞÍ·ûºÏÔ¼¶¨£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="candidateType">å¾…æ£€æŸ¥çš„ç±»å‹ã€‚</param>
+        /// <returns>å¦‚æœç±»å‹ç¬¦åˆçº¦å®šï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public static bool IsConventional(this Type candidateType)
         {
             var unconventionalAttributes = candidateType.GetCustomAttributes(
@@ -28,12 +28,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ÅĞ¶ÏÒ»¸öÊôĞÔÊÇ·ñ·ûºÏÔ¼¶¨¡£ÊôĞÔ·ûºÏÔ¼¶¨µ±ÇÒ½öµ±£º
-        /// - Î´±ê¼Ç²»³£¹æÊôĞÔ
-        /// - ËùÓĞ±ê¼ÇµÄÌõ¼şÔ¼¶¨·µ»Ø true
+        /// åˆ¤æ–­ä¸€ä¸ªå±æ€§æ˜¯å¦ç¬¦åˆçº¦å®šã€‚å±æ€§ç¬¦åˆçº¦å®šå½“ä¸”ä»…å½“ï¼š
+        /// - æœªæ ‡è®°ä¸å¸¸è§„å±æ€§
+        /// - æ‰€æœ‰æ ‡è®°çš„æ¡ä»¶çº¦å®šè¿”å› true
         /// </summary>
-        /// <param name="propertyInfo">´ı¼ì²éµÄÊôĞÔĞÅÏ¢¡£</param>
-        /// <returns>Èç¹ûÊôĞÔ·ûºÏÔ¼¶¨£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="propertyInfo">å¾…æ£€æŸ¥çš„å±æ€§ä¿¡æ¯ã€‚</param>
+        /// <returns>å¦‚æœå±æ€§ç¬¦åˆçº¦å®šï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public static bool IsConventional(this PropertyInfo propertyInfo)
         {
             var unconventionalAttributes = propertyInfo.GetCustomAttributes(
@@ -46,10 +46,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¼ì²éÀàĞÍÊÇ·ñÂú×ãËùÓĞÌõ¼şÔ¼¶¨¡£
+        /// æ£€æŸ¥ç±»å‹æ˜¯å¦æ»¡è¶³æ‰€æœ‰æ¡ä»¶çº¦å®šã€‚
         /// </summary>
-        /// <param name="candidateType">´ı¼ì²éµÄÀàĞÍ¡£</param>
-        /// <returns>Èç¹ûÀàĞÍÂú×ãËùÓĞÌõ¼şÔ¼¶¨£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="candidateType">å¾…æ£€æŸ¥çš„ç±»å‹ã€‚</param>
+        /// <returns>å¦‚æœç±»å‹æ»¡è¶³æ‰€æœ‰æ¡ä»¶çº¦å®šï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public static bool SatisfiesConditionalConventions(this Type candidateType)
         {
             var conditionalAttributes =
@@ -60,10 +60,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¼ì²éÊôĞÔÊÇ·ñÂú×ãËùÓĞÌõ¼şÔ¼¶¨¡£
+        /// æ£€æŸ¥å±æ€§æ˜¯å¦æ»¡è¶³æ‰€æœ‰æ¡ä»¶çº¦å®šã€‚
         /// </summary>
-        /// <param name="propertyInfo">´ı¼ì²éµÄÊôĞÔĞÅÏ¢¡£</param>
-        /// <returns>Èç¹ûÊôĞÔÂú×ãËùÓĞÌõ¼şÔ¼¶¨£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="propertyInfo">å¾…æ£€æŸ¥çš„å±æ€§ä¿¡æ¯ã€‚</param>
+        /// <returns>å¦‚æœå±æ€§æ»¡è¶³æ‰€æœ‰æ¡ä»¶çº¦å®šï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public static bool SatisfiesConditionalConventions(this PropertyInfo propertyInfo)
         {
             var conditionalAttributes =

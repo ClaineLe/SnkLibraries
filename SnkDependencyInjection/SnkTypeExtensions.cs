@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,15 +9,15 @@ using SnkLogging;
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// Ìá¹©ÁË¶ÔÀàĞÍ½øĞĞ²Ù×÷µÄÀ©Õ¹·½·¨¡£
+    /// æä¾›äº†å¯¹ç±»å‹è¿›è¡Œæ“ä½œçš„æ‰©å±•æ–¹æ³•ã€‚
     /// </summary>
     public static class SnkTypeExtensions
     {
         /// <summary>
-        /// °²È«µØ»ñÈ¡³ÌĞò¼¯ÖĞËùÓĞÀàĞÍ£¬¼´Ê¹ÔÚÀàĞÍ¼ÓÔØÊ±³öÏÖÒì³£¡£
+        /// å®‰å…¨åœ°è·å–ç¨‹åºé›†ä¸­æ‰€æœ‰ç±»å‹ï¼Œå³ä½¿åœ¨ç±»å‹åŠ è½½æ—¶å‡ºç°å¼‚å¸¸ã€‚
         /// </summary>
-        /// <param name="assembly">Ä¿±ê³ÌĞò¼¯¡£</param>
-        /// <returns>³ÌĞò¼¯ÖĞµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="assembly">ç›®æ ‡ç¨‹åºé›†ã€‚</param>
+        /// <returns>ç¨‹åºé›†ä¸­çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> ExceptionSafeGetTypes(this Assembly assembly)
         {
             try
@@ -41,10 +41,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// »ñÈ¡³ÌĞò¼¯ÖĞµÄ¿É´´½¨ÀàĞÍ£¬ÅÅ³ı³éÏóÀàºÍÃ»ÓĞ¹«¹²¹¹Ôìº¯ÊıµÄÀàĞÍ¡£
+        /// è·å–ç¨‹åºé›†ä¸­çš„å¯åˆ›å»ºç±»å‹ï¼Œæ’é™¤æŠ½è±¡ç±»å’Œæ²¡æœ‰å…¬å…±æ„é€ å‡½æ•°çš„ç±»å‹ã€‚
         /// </summary>
-        /// <param name="assembly">Ä¿±ê³ÌĞò¼¯¡£</param>
-        /// <returns>¿É´´½¨µÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="assembly">ç›®æ ‡ç¨‹åºé›†ã€‚</param>
+        /// <returns>å¯åˆ›å»ºçš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> CreatableTypes(this Assembly assembly)
         {
             return assembly
@@ -55,66 +55,66 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// »ñÈ¡Ãû³ÆÒÔÖ¸¶¨×Ö·û´®½áÎ²µÄÀàĞÍ¡£
+        /// è·å–åç§°ä»¥æŒ‡å®šå­—ç¬¦ä¸²ç»“å°¾çš„ç±»å‹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="endingWith">Ä¿±ê½áÎ²×Ö·û´®¡£</param>
-        /// <returns>Æ¥ÅäµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <param name="endingWith">ç›®æ ‡ç»“å°¾å­—ç¬¦ä¸²ã€‚</param>
+        /// <returns>åŒ¹é…çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> EndingWith(this IEnumerable<Type> types, string endingWith)
         {
             return types.Where(x => x.Name.EndsWith(endingWith));
         }
 
         /// <summary>
-        /// »ñÈ¡Ãû³ÆÒÔÖ¸¶¨×Ö·û´®¿ªÍ·µÄÀàĞÍ¡£
+        /// è·å–åç§°ä»¥æŒ‡å®šå­—ç¬¦ä¸²å¼€å¤´çš„ç±»å‹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="endingWith">Ä¿±ê¿ªÍ·×Ö·û´®¡£</param>
-        /// <returns>Æ¥ÅäµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <param name="endingWith">ç›®æ ‡å¼€å¤´å­—ç¬¦ä¸²ã€‚</param>
+        /// <returns>åŒ¹é…çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> StartingWith(this IEnumerable<Type> types, string endingWith)
         {
             return types.Where(x => x.Name.StartsWith(endingWith));
         }
 
         /// <summary>
-        /// »ñÈ¡Ãû³Æ°üº¬Ö¸¶¨×Ö·û´®µÄÀàĞÍ¡£
+        /// è·å–åç§°åŒ…å«æŒ‡å®šå­—ç¬¦ä¸²çš„ç±»å‹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="containing">Ä¿±ê°üº¬×Ö·û´®¡£</param>
-        /// <returns>Æ¥ÅäµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <param name="containing">ç›®æ ‡åŒ…å«å­—ç¬¦ä¸²ã€‚</param>
+        /// <returns>åŒ¹é…çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> Containing(this IEnumerable<Type> types, string containing)
         {
             return types.Where(x => x.Name.Contains(containing));
         }
 
         /// <summary>
-        /// »ñÈ¡ÃüÃû¿Õ¼äÒÔÖ¸¶¨×Ö·û´®¿ªÍ·µÄÀàĞÍ¡£
+        /// è·å–å‘½åç©ºé—´ä»¥æŒ‡å®šå­—ç¬¦ä¸²å¼€å¤´çš„ç±»å‹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="namespaceBase">Ä¿±êÃüÃû¿Õ¼ä×Ö·û´®¡£</param>
-        /// <returns>Æ¥ÅäµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <param name="namespaceBase">ç›®æ ‡å‘½åç©ºé—´å­—ç¬¦ä¸²ã€‚</param>
+        /// <returns>åŒ¹é…çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> InNamespace(this IEnumerable<Type> types, string namespaceBase)
         {
             return types.Where(x => x.Namespace?.StartsWith(namespaceBase) == true);
         }
 
         /// <summary>
-        /// »ñÈ¡´øÓĞÖ¸¶¨ÊôĞÔµÄÀàĞÍ¡£
+        /// è·å–å¸¦æœ‰æŒ‡å®šå±æ€§çš„ç±»å‹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="attributeType">Ä¿±êÊôĞÔÀàĞÍ¡£</param>
-        /// <returns>Æ¥ÅäµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <param name="attributeType">ç›®æ ‡å±æ€§ç±»å‹ã€‚</param>
+        /// <returns>åŒ¹é…çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> WithAttribute(this IEnumerable<Type> types, Type attributeType)
         {
             return types.Where(x => x.GetCustomAttributes(attributeType, true).Length > 0);
         }
 
         /// <summary>
-        /// »ñÈ¡´øÓĞÖ¸¶¨ÊôĞÔµÄÀàĞÍ£¬·ºĞÍ°æ±¾¡£
+        /// è·å–å¸¦æœ‰æŒ‡å®šå±æ€§çš„ç±»å‹ï¼Œæ³›å‹ç‰ˆæœ¬ã€‚
         /// </summary>
-        /// <typeparam name="TAttribute">Ä¿±êÊôĞÔÀàĞÍ¡£</typeparam>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <returns>Æ¥ÅäµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <typeparam name="TAttribute">ç›®æ ‡å±æ€§ç±»å‹ã€‚</typeparam>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <returns>åŒ¹é…çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> WithAttribute<TAttribute>(this IEnumerable<Type> types)
             where TAttribute : Attribute
         {
@@ -122,44 +122,44 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// »ñÈ¡¼Ì³Ğ×ÔÖ¸¶¨»ùÀàµÄÀàĞÍ¡£
+        /// è·å–ç»§æ‰¿è‡ªæŒ‡å®šåŸºç±»çš„ç±»å‹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="baseType">»ùÀàÀàĞÍ¡£</param>
-        /// <returns>¼Ì³Ğ×Ô»ùÀàµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <param name="baseType">åŸºç±»ç±»å‹ã€‚</param>
+        /// <returns>ç»§æ‰¿è‡ªåŸºç±»çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> Inherits(this IEnumerable<Type> types, Type baseType)
         {
             return types.Where(baseType.IsAssignableFrom);
         }
 
         /// <summary>
-        /// »ñÈ¡²»¼Ì³Ğ×ÔÖ¸¶¨»ùÀàµÄÀàĞÍ¡£
+        /// è·å–ä¸ç»§æ‰¿è‡ªæŒ‡å®šåŸºç±»çš„ç±»å‹ã€‚
         /// </summary>
-        /// <typeparam name="TBase">»ùÀàÀàĞÍ¡£</typeparam>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <returns>²»¼Ì³Ğ×Ô»ùÀàµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <typeparam name="TBase">åŸºç±»ç±»å‹ã€‚</typeparam>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <returns>ä¸ç»§æ‰¿è‡ªåŸºç±»çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> Inherits<TBase>(this IEnumerable<Type> types)
         {
             return types.Inherits(typeof(TBase));
         }
 
         /// <summary>
-        /// »ñÈ¡²»¼Ì³Ğ×ÔÖ¸¶¨»ùÀàµÄÀàĞÍ¡£
+        /// è·å–ä¸ç»§æ‰¿è‡ªæŒ‡å®šåŸºç±»çš„ç±»å‹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="baseType">»ùÀàÀàĞÍ¡£</param>
-        /// <returns>²»¼Ì³Ğ×Ô»ùÀàµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <param name="baseType">åŸºç±»ç±»å‹ã€‚</param>
+        /// <returns>ä¸ç»§æ‰¿è‡ªåŸºç±»çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> DoesNotInherit(this IEnumerable<Type> types, Type baseType)
         {
             return types.Where(x => !baseType.IsAssignableFrom(x));
         }
 
         /// <summary>
-        /// »ñÈ¡²»¼Ì³Ğ×ÔÖ¸¶¨»ùÀàµÄÀàĞÍ£¬·ºĞÍ°æ±¾¡£
+        /// è·å–ä¸ç»§æ‰¿è‡ªæŒ‡å®šåŸºç±»çš„ç±»å‹ï¼Œæ³›å‹ç‰ˆæœ¬ã€‚
         /// </summary>
-        /// <typeparam name="TBase">»ùÀàÀàĞÍ¡£</typeparam>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <returns>²»¼Ì³Ğ×Ô»ùÀàµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <typeparam name="TBase">åŸºç±»ç±»å‹ã€‚</typeparam>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <returns>ä¸ç»§æ‰¿è‡ªåŸºç±»çš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> DoesNotInherit<TBase>(this IEnumerable<Type> types)
             where TBase : Attribute
         {
@@ -167,14 +167,14 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ÅÅ³ıÖ¸¶¨ÀàĞÍµÄ¼¯ºÏ¡£
+        /// æ’é™¤æŒ‡å®šç±»å‹çš„é›†åˆã€‚
         /// </summary>
-        /// <param name="types">Ô­Ê¼ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="except">ÒªÅÅ³ıµÄÀàĞÍÊı×é¡£</param>
-        /// <returns>ÅÅ³ıºóµÄÀàĞÍ¼¯ºÏ¡£</returns>
+        /// <param name="types">åŸå§‹ç±»å‹é›†åˆã€‚</param>
+        /// <param name="except">è¦æ’é™¤çš„ç±»å‹æ•°ç»„ã€‚</param>
+        /// <returns>æ’é™¤åçš„ç±»å‹é›†åˆã€‚</returns>
         public static IEnumerable<Type> Except(this IEnumerable<Type> types, params Type[] except)
         {
-            // ÓÅ»¯ - Èç¹ûÅÅ³ıµÄÀàĞÍÊı´óÓÚµÈÓÚ3£¬ÔòÊ¹ÓÃ×Öµä½øĞĞ²éÕÒ
+            // ä¼˜åŒ– - å¦‚æœæ’é™¤çš„ç±»å‹æ•°å¤§äºç­‰äº3ï¼Œåˆ™ä½¿ç”¨å­—å…¸è¿›è¡ŒæŸ¥æ‰¾
             if (except.Length >= 3)
             {
                 var lookup = except.ToDictionary(x => x, _ => true);
@@ -185,35 +185,35 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¼ì²éÀàĞÍÊÇ·ñÊÇ²¿·Ö·â±ÕµÄ·ºĞÍÀàĞÍ¡£
+        /// æ£€æŸ¥ç±»å‹æ˜¯å¦æ˜¯éƒ¨åˆ†å°é—­çš„æ³›å‹ç±»å‹ã€‚
         /// </summary>
-        /// <param name="type">Ä¿±êÀàĞÍ¡£</param>
-        /// <returns>Èç¹ûÊÇ²¿·Ö·â±ÕµÄ·ºĞÍ£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">ç›®æ ‡ç±»å‹ã€‚</param>
+        /// <returns>å¦‚æœæ˜¯éƒ¨åˆ†å°é—­çš„æ³›å‹ï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public static bool IsGenericPartiallyClosed(this Type type) =>
             type.GetTypeInfo().IsGenericType &&
             type.GetTypeInfo().ContainsGenericParameters &&
             type.GetGenericTypeDefinition() != type;
 
         /// <summary>
-        /// ±íÊ¾·şÎñÀàĞÍºÍÊµÏÖÀàĞÍ¶ÔµÄÀà¡£
+        /// è¡¨ç¤ºæœåŠ¡ç±»å‹å’Œå®ç°ç±»å‹å¯¹çš„ç±»ã€‚
         /// </summary>
         public class ServiceTypeAndImplementationTypePair
         {
             /// <summary>
-            /// ·şÎñÀàĞÍÁ´±í¡£
+            /// æœåŠ¡ç±»å‹é“¾è¡¨ã€‚
             /// </summary>
             public List<Type> ServiceTypes { get; }
 
             /// <summary>
-            /// ÊµÏÖÀàĞÍ¡£
+            /// å®ç°ç±»å‹ã€‚
             /// </summary>
             public Type ImplementationType { get; }
 
             /// <summary>
-            /// ¹¹Ôì·½·¨
+            /// æ„é€ æ–¹æ³•
             /// </summary>
-            /// <param name="serviceTypes">·şÎñÀàĞÍÁ´±í¡£</param>
-            /// <param name="implementationType">ÊµÏÖÀàĞÍ¡£</param>
+            /// <param name="serviceTypes">æœåŠ¡ç±»å‹é“¾è¡¨ã€‚</param>
+            /// <param name="implementationType">å®ç°ç±»å‹ã€‚</param>
 
             public ServiceTypeAndImplementationTypePair(List<Type> serviceTypes, Type implementationType)
             {
@@ -223,32 +223,32 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ÒÔÀàĞÍ×ÔÉí×÷Îª·şÎñÀàĞÍµÄĞÎÊ½»ñÈ¡·şÎñºÍÊµÏÖÀàĞÍ¶Ô¡£
+        /// ä»¥ç±»å‹è‡ªèº«ä½œä¸ºæœåŠ¡ç±»å‹çš„å½¢å¼è·å–æœåŠ¡å’Œå®ç°ç±»å‹å¯¹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <returns>·şÎñÀàĞÍºÍÊµÏÖÀàĞÍ¶Ô¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <returns>æœåŠ¡ç±»å‹å’Œå®ç°ç±»å‹å¯¹é›†åˆã€‚</returns>
         public static IEnumerable<ServiceTypeAndImplementationTypePair> AsTypes(this IEnumerable<Type> types)
         {
             return types.Select(t => new ServiceTypeAndImplementationTypePair(new List<Type> { t }, t));
         }
 
         /// <summary>
-        /// ÒÔÀàĞÍÊµÏÖµÄ½Ó¿Ú×÷Îª·şÎñÀàĞÍµÄĞÎÊ½»ñÈ¡·şÎñºÍÊµÏÖÀàĞÍ¶Ô¡£
+        /// ä»¥ç±»å‹å®ç°çš„æ¥å£ä½œä¸ºæœåŠ¡ç±»å‹çš„å½¢å¼è·å–æœåŠ¡å’Œå®ç°ç±»å‹å¯¹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <returns>·şÎñÀàĞÍºÍÊµÏÖÀàĞÍ¶Ô¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <returns>æœåŠ¡ç±»å‹å’Œå®ç°ç±»å‹å¯¹é›†åˆã€‚</returns>
         public static IEnumerable<ServiceTypeAndImplementationTypePair> AsInterfaces(this IEnumerable<Type> types) =>
             types.Select(t => new ServiceTypeAndImplementationTypePair(t.GetInterfaces().ToList(), t));
 
         /// <summary>
-        /// ÒÔÖ¸¶¨½Ó¿Ú×÷Îª·şÎñÀàĞÍµÄĞÎÊ½»ñÈ¡·şÎñºÍÊµÏÖÀàĞÍ¶Ô¡£
+        /// ä»¥æŒ‡å®šæ¥å£ä½œä¸ºæœåŠ¡ç±»å‹çš„å½¢å¼è·å–æœåŠ¡å’Œå®ç°ç±»å‹å¯¹ã€‚
         /// </summary>
-        /// <param name="types">ÀàĞÍ¼¯ºÏ¡£</param>
-        /// <param name="interfaces">½Ó¿ÚÀàĞÍÊı×é¡£</param>
-        /// <returns>·şÎñÀàĞÍºÍÊµÏÖÀàĞÍ¶Ô¼¯ºÏ¡£</returns>
+        /// <param name="types">ç±»å‹é›†åˆã€‚</param>
+        /// <param name="interfaces">æ¥å£ç±»å‹æ•°ç»„ã€‚</param>
+        /// <returns>æœåŠ¡ç±»å‹å’Œå®ç°ç±»å‹å¯¹é›†åˆã€‚</returns>
         public static IEnumerable<ServiceTypeAndImplementationTypePair> AsInterfaces(this IEnumerable<Type> types, params Type[] interfaces)
         {
-            // ÓÅ»¯ - Èç¹û½Ó¿ÚÀàĞÍÊı´óÓÚµÈÓÚ3£¬ÔòÊ¹ÓÃ×Öµä½øĞĞ²éÕÒ
+            // ä¼˜åŒ– - å¦‚æœæ¥å£ç±»å‹æ•°å¤§äºç­‰äº3ï¼Œåˆ™ä½¿ç”¨å­—å…¸è¿›è¡ŒæŸ¥æ‰¾
             if (interfaces.Length >= 3)
             {
                 var lookup = interfaces.ToDictionary(x => x, _ => true);
@@ -267,11 +267,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ÅÅ³ıÖ¸¶¨½Ó¿ÚÀàĞÍµÄ·şÎñºÍÊµÏÖÀàĞÍ¶Ô¡£
+        /// æ’é™¤æŒ‡å®šæ¥å£ç±»å‹çš„æœåŠ¡å’Œå®ç°ç±»å‹å¯¹ã€‚
         /// </summary>
-        /// <param name="pairs">·şÎñºÍÊµÏÖÀàĞÍ¶Ô¼¯ºÏ¡£</param>
-        /// <param name="toExclude">ÒªÅÅ³ıµÄ½Ó¿ÚÀàĞÍÊı×é¡£</param>
-        /// <returns>ÅÅ³ıºóµÄ·şÎñºÍÊµÏÖÀàĞÍ¶Ô¼¯ºÏ¡£</returns>
+        /// <param name="pairs">æœåŠ¡å’Œå®ç°ç±»å‹å¯¹é›†åˆã€‚</param>
+        /// <param name="toExclude">è¦æ’é™¤çš„æ¥å£ç±»å‹æ•°ç»„ã€‚</param>
+        /// <returns>æ’é™¤åçš„æœåŠ¡å’Œå®ç°ç±»å‹å¯¹é›†åˆã€‚</returns>
         public static IEnumerable<ServiceTypeAndImplementationTypePair> ExcludeInterfaces(
             this IEnumerable<ServiceTypeAndImplementationTypePair> pairs, params Type[] toExclude)
         {
@@ -283,9 +283,9 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ½«·şÎñºÍÊµÏÖÀàĞÍ¶Ô×¢²áÎªµ¥Àı¡£
+        /// å°†æœåŠ¡å’Œå®ç°ç±»å‹å¯¹æ³¨å†Œä¸ºå•ä¾‹ã€‚
         /// </summary>
-        /// <param name="pairs">·şÎñºÍÊµÏÖÀàĞÍ¶Ô¼¯ºÏ¡£</param>
+        /// <param name="pairs">æœåŠ¡å’Œå®ç°ç±»å‹å¯¹é›†åˆã€‚</param>
         public static void RegisterAsSingleton(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
         {
             foreach (var pair in pairs)
@@ -305,9 +305,9 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ½«·şÎñºÍÊµÏÖÀàĞÍ¶Ô×¢²áÎªÀÁ¼ÓÔØµ¥Àı¡£
+        /// å°†æœåŠ¡å’Œå®ç°ç±»å‹å¯¹æ³¨å†Œä¸ºæ‡’åŠ è½½å•ä¾‹ã€‚
         /// </summary>
-        /// <param name="pairs">·şÎñºÍÊµÏÖÀàĞÍ¶Ô¼¯ºÏ¡£</param>
+        /// <param name="pairs">æœåŠ¡å’Œå®ç°ç±»å‹å¯¹é›†åˆã€‚</param>
         public static void RegisterAsLazySingleton(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
         {
             foreach (var pair in pairs)
@@ -326,9 +326,9 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ½«·şÎñºÍÊµÏÖÀàĞÍ¶Ô×¢²áÎª¶¯Ì¬ÀàĞÍ¡£
+        /// å°†æœåŠ¡å’Œå®ç°ç±»å‹å¯¹æ³¨å†Œä¸ºåŠ¨æ€ç±»å‹ã€‚
         /// </summary>
-        /// <param name="pairs">·şÎñºÍÊµÏÖÀàĞÍ¶Ô¼¯ºÏ¡£</param>
+        /// <param name="pairs">æœåŠ¡å’Œå®ç°ç±»å‹å¯¹é›†åˆã€‚</param>
         public static void RegisterAsDynamic(this IEnumerable<ServiceTypeAndImplementationTypePair> pairs)
         {
             foreach (var pair in pairs)
@@ -341,10 +341,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ´´½¨Ö¸¶¨ÀàĞÍµÄÄ¬ÈÏÊµÀı¡£
+        /// åˆ›å»ºæŒ‡å®šç±»å‹çš„é»˜è®¤å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Ä¿±êÀàĞÍ¡£</param>
-        /// <returns>Ä¬ÈÏÊµÀı£¬Èç¹ûÎŞ·¨´´½¨Ôò·µ»Ønull¡£</returns>
+        /// <param name="type">ç›®æ ‡ç±»å‹ã€‚</param>
+        /// <returns>é»˜è®¤å®ä¾‹ï¼Œå¦‚æœæ— æ³•åˆ›å»ºåˆ™è¿”å›nullã€‚</returns>
         public static object CreateDefault(this Type type)
         {
             if (type == null)
@@ -362,11 +362,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¸ù¾İ¸ø¶¨µÄ²ÎÊı×Öµä²éÕÒÊÊÓÃµÄ¹¹Ôìº¯Êı¡£
+        /// æ ¹æ®ç»™å®šçš„å‚æ•°å­—å…¸æŸ¥æ‰¾é€‚ç”¨çš„æ„é€ å‡½æ•°ã€‚
         /// </summary>
-        /// <param name="type">Ä¿±êÀàĞÍ¡£</param>
-        /// <param name="arguments">²ÎÊı×Öµä¡£</param>
-        /// <returns>ÕÒµ½µÄ¹¹Ôìº¯ÊıĞÅÏ¢¡£</returns>
+        /// <param name="type">ç›®æ ‡ç±»å‹ã€‚</param>
+        /// <param name="arguments">å‚æ•°å­—å…¸ã€‚</param>
+        /// <returns>æ‰¾åˆ°çš„æ„é€ å‡½æ•°ä¿¡æ¯ã€‚</returns>
         public static ConstructorInfo FindApplicableConstructor(this Type type, IDictionary<string, object> arguments)
         {
             var constructors = type.GetConstructors();
@@ -390,11 +390,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¸ù¾İ¸ø¶¨µÄ²ÎÊıÊı×é²éÕÒÊÊÓÃµÄ¹¹Ôìº¯Êı¡£
+        /// æ ¹æ®ç»™å®šçš„å‚æ•°æ•°ç»„æŸ¥æ‰¾é€‚ç”¨çš„æ„é€ å‡½æ•°ã€‚
         /// </summary>
-        /// <param name="type">Ä¿±êÀàĞÍ¡£</param>
-        /// <param name="arguments">²ÎÊıÊı×é¡£</param>
-        /// <returns>ÕÒµ½µÄ¹¹Ôìº¯ÊıĞÅÏ¢¡£</returns>
+        /// <param name="type">ç›®æ ‡ç±»å‹ã€‚</param>
+        /// <param name="arguments">å‚æ•°æ•°ç»„ã€‚</param>
+        /// <returns>æ‰¾åˆ°çš„æ„é€ å‡½æ•°ä¿¡æ¯ã€‚</returns>
         public static ConstructorInfo FindApplicableConstructor(this Type type, object[] arguments)
         {
             var constructors = type.GetConstructors();
@@ -427,11 +427,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¼ì²é¹¹Ôìº¯ÊıµÄ²ÎÊıÊÇ·ñÓë¸ø¶¨µÄ²ÎÊı×ÖµäÆ¥Åä¡£
+        /// æ£€æŸ¥æ„é€ å‡½æ•°çš„å‚æ•°æ˜¯å¦ä¸ç»™å®šçš„å‚æ•°å­—å…¸åŒ¹é…ã€‚
         /// </summary>
-        /// <param name="arguments">²ÎÊı×Öµä¡£</param>
-        /// <param name="constructor">Ä¿±ê¹¹Ôìº¯Êı¡£</param>
-        /// <param name="unusedKeys">ÉĞÎ´Ê¹ÓÃµÄ¼ü¼¯ºÏ¡£</param>
+        /// <param name="arguments">å‚æ•°å­—å…¸ã€‚</param>
+        /// <param name="constructor">ç›®æ ‡æ„é€ å‡½æ•°ã€‚</param>
+        /// <param name="unusedKeys">å°šæœªä½¿ç”¨çš„é”®é›†åˆã€‚</param>
         private static void CheckConstructors(IDictionary<string, object> arguments, MethodBase constructor, ref List<string> unusedKeys)
         {
             foreach (var parameter in constructor.GetParameters())

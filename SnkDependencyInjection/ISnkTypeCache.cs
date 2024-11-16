@@ -1,33 +1,33 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// �������ͻ���ӿڣ����ڴ洢�Ͳ��ҳ����е�������Ϣ��
+    /// 定义类型缓存接口，用于存储和查找程序集中的类型信息。
     /// </summary>
     public interface ISnkTypeCache
     {
         /// <summary>
-        /// ��ȡ���ͻ���������Ϊ���͵�ȫ����Сд��ʽ��
+        /// 获取类型缓存表，其键为类型的全名的小写形式。
         /// </summary>
         Dictionary<string, Type> LowerCaseFullNameCache { get; }
 
         /// <summary>
-        /// ��ȡ���ͻ���������Ϊ���͵�ȫ����
+        /// 获取类型缓存表，其键为类型的全名。
         /// </summary>
         Dictionary<string, Type> FullNameCache { get; }
 
         /// <summary>
-        /// ��ȡ���ͻ���������Ϊ���͵����ơ�
+        /// 获取类型缓存表，其键为类型的名称。
         /// </summary>
         Dictionary<string, Type> NameCache { get; }
 
         /// <summary>
-        /// �򻺴������ӳ����е��������͡�
+        /// 向缓存中添加程序集中的所有类型。
         /// </summary>
-        /// <param name="assembly">��Ҫ����ĳ��򼯡�</param>
+        /// <param name="assembly">需要缓存的程序集。</param>
         void AddAssembly(Assembly assembly);
     }
 }

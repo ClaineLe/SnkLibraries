@@ -1,23 +1,23 @@
-using System;
+ï»¿using System;
 
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// ÓÃÓÚÑÓ³Ù´´½¨µ¥ÀıÊµÀıµÄÀà¡£
+    /// ç”¨äºå»¶è¿Ÿåˆ›å»ºå•ä¾‹å®ä¾‹çš„ç±»ã€‚
     /// </summary>
     public class SnkLazySingletonCreator
     {
-        // ÓÃÀ´Í¬²½Ïß³ÌËøµÄ¶ÔÏó
+        // ç”¨æ¥åŒæ­¥çº¿ç¨‹é”çš„å¯¹è±¡
         private readonly object _locker = new object();
 
-        // ĞèÒª´´½¨µ¥ÀıÊµÀıµÄÀàĞÍ
+        // éœ€è¦åˆ›å»ºå•ä¾‹å®ä¾‹çš„ç±»å‹
         private readonly Type _type;
 
-        // ±£´æµ¥ÀıÊµÀıµÄ×Ö¶Î
+        // ä¿å­˜å•ä¾‹å®ä¾‹çš„å­—æ®µ
         private object _instance;
 
         /// <summary>
-        /// »ñÈ¡µ¥ÀıÊµÀı£¬Èç¹ûÊµÀıÉĞÎ´´´½¨£¬ÔòÑÓ³Ù´´½¨Ëü¡£
+        /// è·å–å•ä¾‹å®ä¾‹ï¼Œå¦‚æœå®ä¾‹å°šæœªåˆ›å»ºï¼Œåˆ™å»¶è¿Ÿåˆ›å»ºå®ƒã€‚
         /// </summary>
         public object Instance
         {
@@ -26,10 +26,10 @@ namespace SnkDependencyInjection
                 if (_instance != null)
                     return _instance;
 
-                // È·±£Ïß³Ì°²È«µÄÊµÀı»¯
+                // ç¡®ä¿çº¿ç¨‹å®‰å…¨çš„å®ä¾‹åŒ–
                 lock (_locker)
                 {
-                    // Èç¹û_instanceÎªnull£¬Ôòµ÷ÓÃÒÀÀµ×¢ÈëÌá¹©µÄ¹¹Ôì·½·¨´´½¨ÊµÀı
+                    // å¦‚æœ_instanceä¸ºnullï¼Œåˆ™è°ƒç”¨ä¾èµ–æ³¨å…¥æä¾›çš„æ„é€ æ–¹æ³•åˆ›å»ºå®ä¾‹
                     _instance = _instance ?? SnkDIProvider.Instance.DIConstruct(_type);
                     return _instance;
                 }
@@ -37,9 +37,9 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³õÊ¼»¯ <see cref="SnkLazySingletonCreator"/> ÀàµÄĞÂÊµÀı¡£
+        /// åˆå§‹åŒ– <see cref="SnkLazySingletonCreator"/> ç±»çš„æ–°å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">ĞèÒª´´½¨µ¥ÀıÊµÀıµÄÀàĞÍ¡£</param>
+        /// <param name="type">éœ€è¦åˆ›å»ºå•ä¾‹å®ä¾‹çš„ç±»å‹ã€‚</param>
         public SnkLazySingletonCreator(Type type)
         {
             _type = type;

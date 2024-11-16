@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,48 +7,48 @@ using SnkLogging;
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// Ò»¸ö·ºĞÍÀàĞÍ»º´æÀà£¬ÓÃÓÚ»º´æÌØ¶¨ÀàĞÍµÄ×ÓÀà¡£
+    /// ä¸€ä¸ªæ³›å‹ç±»å‹ç¼“å­˜ç±»ï¼Œç”¨äºç¼“å­˜ç‰¹å®šç±»å‹çš„å­ç±»ã€‚
     /// </summary>
-    /// <typeparam name="TType">Òª»º´æµÄÀàĞÍµÄ»ùÀà»ò½Ó¿Ú¡£</typeparam>
+    /// <typeparam name="TType">è¦ç¼“å­˜çš„ç±»å‹çš„åŸºç±»æˆ–æ¥å£ã€‚</typeparam>
     public class SnkTypeCache<TType> : ISnkTypeCache
     {
         /// <summary>
-        /// »º´æÒÔÀàĞÍµÄÍêÕûÃû³ÆµÄĞ¡Ğ´ĞÎÊ½Îª¼üµÄÀàĞÍ×Öµä¡£
+        /// ç¼“å­˜ä»¥ç±»å‹çš„å®Œæ•´åç§°çš„å°å†™å½¢å¼ä¸ºé”®çš„ç±»å‹å­—å…¸ã€‚
         /// </summary>
         public Dictionary<string, Type> LowerCaseFullNameCache { get; } = new Dictionary<string, Type>();
 
         /// <summary>
-        /// »º´æÒÔÀàĞÍµÄÍêÕûÃû³ÆÎª¼üµÄÀàĞÍ×Öµä¡£
+        /// ç¼“å­˜ä»¥ç±»å‹çš„å®Œæ•´åç§°ä¸ºé”®çš„ç±»å‹å­—å…¸ã€‚
         /// </summary>
         public Dictionary<string, Type> FullNameCache { get; } = new Dictionary<string, Type>();
 
         /// <summary>
-        /// »º´æÒÔÀàĞÍµÄÃû³ÆÎª¼üµÄÀàĞÍ×Öµä¡£
+        /// ç¼“å­˜ä»¥ç±»å‹çš„åç§°ä¸ºé”®çš„ç±»å‹å­—å…¸ã€‚
         /// </summary>
         public Dictionary<string, Type> NameCache { get; } = new Dictionary<string, Type>();
 
         /// <summary>
-        /// ¼ÇÂ¼ÒÑ¾­»º´æ¹ıµÄ³ÌĞò¼¯£¬±ÜÃâÖØ¸´»º´æ¡£
+        /// è®°å½•å·²ç»ç¼“å­˜è¿‡çš„ç¨‹åºé›†ï¼Œé¿å…é‡å¤ç¼“å­˜ã€‚
         /// </summary>
         public Dictionary<Assembly, bool> CachedAssemblies { get; } = new Dictionary<Assembly, bool>();
 
         /// <summary>
-        /// ½«Ö¸¶¨µÄ³ÌĞò¼¯ÖĞµÄÀàĞÍÌí¼Óµ½»º´æÖĞ¡£
+        /// å°†æŒ‡å®šçš„ç¨‹åºé›†ä¸­çš„ç±»å‹æ·»åŠ åˆ°ç¼“å­˜ä¸­ã€‚
         /// </summary>
-        /// <param name="assembly">ÒªÉ¨ÃèµÄ³ÌĞò¼¯¡£</param>
+        /// <param name="assembly">è¦æ‰«æçš„ç¨‹åºé›†ã€‚</param>
         public void AddAssembly(Assembly assembly)
         {
             try
             {
-                // Èç¹û³ÌĞò¼¯ÒÑ¾­»º´æ£¬Ö±½Ó·µ»Ø¡£
+                // å¦‚æœç¨‹åºé›†å·²ç»ç¼“å­˜ï¼Œç›´æ¥è¿”å›ã€‚
                 if (CachedAssemblies.ContainsKey(assembly))
                     return;
 
                 var viewType = typeof(TType);
-                // ²éÕÒ³ÌĞò¼¯µÄËùÓĞÀàĞÍÖĞ£¬¼Ì³Ğ×ÔÌØ¶¨»ùÀà»òÊµÏÖÌØ¶¨½Ó¿ÚµÄÀàĞÍ¡£
+                // æŸ¥æ‰¾ç¨‹åºé›†çš„æ‰€æœ‰ç±»å‹ä¸­ï¼Œç»§æ‰¿è‡ªç‰¹å®šåŸºç±»æˆ–å®ç°ç‰¹å®šæ¥å£çš„ç±»å‹ã€‚
                 var query = assembly.DefinedTypes.Where(ti => ti.IsSubclassOf(viewType)).Select(ti => ti.AsType());
 
-                // ½«ÕÒµ½µÄÀàĞÍĞÅÏ¢Ìí¼Óµ½»º´æÖĞ¡£
+                // å°†æ‰¾åˆ°çš„ç±»å‹ä¿¡æ¯æ·»åŠ åˆ°ç¼“å­˜ä¸­ã€‚
                 foreach (var type in query)
                 {
                     var fullName = type.FullName;
@@ -63,12 +63,12 @@ namespace SnkDependencyInjection
                         NameCache[name] = type;
                 }
 
-                // ½«³ÌĞò¼¯±ê¼ÇÎªÒÑ»º´æ¡£
+                // å°†ç¨‹åºé›†æ ‡è®°ä¸ºå·²ç¼“å­˜ã€‚
                 CachedAssemblies[assembly] = true;
             }
             catch (ReflectionTypeLoadException e)
             {
-                // ²¶»ñ¼ÓÔØÒì³£²¢¼ÇÂ¼¾¯¸æÈÕÖ¾£¬¶ø²»Ó°Ïì³ÌĞò¼ÌĞøÖ´ĞĞ¡£
+                // æ•è·åŠ è½½å¼‚å¸¸å¹¶è®°å½•è­¦å‘Šæ—¥å¿—ï¼Œè€Œä¸å½±å“ç¨‹åºç»§ç»­æ‰§è¡Œã€‚
                 SnkLogHost.Default?.Warning(e, $"ReflectionTypeLoadException masked during loading of {assembly.FullName}");
             }
         }

@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// ±íÊ¾Ò»¸öÊôĞÔÓ¦Í¨¹ıÒÀÀµ×¢Èë½øĞĞ¸³ÖµµÄÌØĞÔ¡£
+    /// è¡¨ç¤ºä¸€ä¸ªå±æ€§åº”é€šè¿‡ä¾èµ–æ³¨å…¥è¿›è¡Œèµ‹å€¼çš„ç‰¹æ€§ã€‚
     /// </summary>
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
     public class SnkInjectAttribute : Attribute

@@ -1,9 +1,9 @@
-using System;
+ï»¿using System;
 
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// ¸ÃÊôĞÔÓÃÓÚ±ê¼ÇÀà£¬²¢ÇÒ²»ÄÜ¶à´ÎÓ¦ÓÃÔÚÍ¬Ò»¸öÀàÉÏ
+    /// è¯¥å±æ€§ç”¨äºæ ‡è®°ç±»ï¼Œå¹¶ä¸”ä¸èƒ½å¤šæ¬¡åº”ç”¨åœ¨åŒä¸€ä¸ªç±»ä¸Š
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class SnkUnconventionalAttribute : Attribute

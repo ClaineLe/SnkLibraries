@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,37 +7,37 @@ using SnkLogging;
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// ÊôĞÔ×¢ÈëÆ÷µÄÊµÏÖ¡£
+    /// å±æ€§æ³¨å…¥å™¨çš„å®ç°ã€‚
     /// </summary>
     public class SnkPropertyInjector : ISnkPropertyInjector
     {
         /// <summary>
-        /// »ñÈ¡»òÉèÖÃ¿É×¢ÈëÊôĞÔµÄ°ó¶¨±êÖ¾¡£Ä¬ÈÏÖµÎª¹«¹²ÊµÀıÊôĞÔ²¢Õ¹Æ½²ã´Î½á¹¹¡£
+        /// è·å–æˆ–è®¾ç½®å¯æ³¨å…¥å±æ€§çš„ç»‘å®šæ ‡å¿—ã€‚é»˜è®¤å€¼ä¸ºå…¬å…±å®ä¾‹å±æ€§å¹¶å±•å¹³å±‚æ¬¡ç»“æ„ã€‚
         /// </summary>
         protected virtual BindingFlags InjectablePropertyBindingFlags { get; } = BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy;
 
         /// <summary>
-        /// ½«ÒÀÀµÏî×¢Èëµ½Ä¿±ê¶ÔÏóµÄÊôĞÔÖĞ¡£
+        /// å°†ä¾èµ–é¡¹æ³¨å…¥åˆ°ç›®æ ‡å¯¹è±¡çš„å±æ€§ä¸­ã€‚
         /// </summary>
-        /// <param name="target">Òª×¢ÈëµÄÄ¿±ê¶ÔÏó¡£</param>
-        /// <param name="options">×¢ÈëÑ¡Ïî¡£Èç¹ûÎª null£¬½«Ê¹ÓÃÄ¬ÈÏÑ¡Ïî¡£</param>
+        /// <param name="target">è¦æ³¨å…¥çš„ç›®æ ‡å¯¹è±¡ã€‚</param>
+        /// <param name="options">æ³¨å…¥é€‰é¡¹ã€‚å¦‚æœä¸º nullï¼Œå°†ä½¿ç”¨é»˜è®¤é€‰é¡¹ã€‚</param>
         public virtual void Inject(object target, ISnkPropertyInjectorOptions options = null)
         {
-            // Èç¹ûÎ´Ìá¹©Ñ¡Ïî£¬ÔòÊ¹ÓÃÄ¬ÈÏÑ¡Ïî¡£
+            // å¦‚æœæœªæä¾›é€‰é¡¹ï¼Œåˆ™ä½¿ç”¨é»˜è®¤é€‰é¡¹ã€‚
             options = options ?? SnkPropertyInjectorOptions.All;
 
-            // Èç¹ûÃ»ÓĞÒª×¢ÈëµÄÊôĞÔ£¬ÔòÖ±½Ó·µ»Ø¡£
+            // å¦‚æœæ²¡æœ‰è¦æ³¨å…¥çš„å±æ€§ï¼Œåˆ™ç›´æ¥è¿”å›ã€‚
             if (options.InjectIntoProperties == SnkPropertyInjection.None)
                 return;
 
-            // Ä¿±ê¶ÔÏó²»ÄÜÎª¿Õ¡£
+            // ç›®æ ‡å¯¹è±¡ä¸èƒ½ä¸ºç©ºã€‚
             if (target == null)
                 throw new ArgumentNullException(nameof(target));
 
-            // ²éÕÒÄ¿±ê¶ÔÏóÖĞËùÓĞ¿É×¢ÈëµÄÊôĞÔ¡£
+            // æŸ¥æ‰¾ç›®æ ‡å¯¹è±¡ä¸­æ‰€æœ‰å¯æ³¨å…¥çš„å±æ€§ã€‚
             var injectableProperties = FindInjectableProperties(target.GetType(), options);
 
-            // ±éÀúËùÓĞ¿É×¢ÈëµÄÊôĞÔ²¢½øĞĞ×¢Èë¡£
+            // éå†æ‰€æœ‰å¯æ³¨å…¥çš„å±æ€§å¹¶è¿›è¡Œæ³¨å…¥ã€‚
             foreach (var injectableProperty in injectableProperties)
             {
                 InjectProperty(target, injectableProperty, options);
@@ -45,31 +45,31 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ½«ÒÀÀµÏî×¢Èëµ½Ö¸¶¨µÄÊôĞÔÖĞ¡£
+        /// å°†ä¾èµ–é¡¹æ³¨å…¥åˆ°æŒ‡å®šçš„å±æ€§ä¸­ã€‚
         /// </summary>
-        /// <param name="toReturn">Ä¿±ê¶ÔÏó¡£</param>
-        /// <param name="injectableProperty">Òª×¢ÈëµÄÊôĞÔ¡£</param>
-        /// <param name="options">×¢ÈëÑ¡Ïî¡£</param>
+        /// <param name="toReturn">ç›®æ ‡å¯¹è±¡ã€‚</param>
+        /// <param name="injectableProperty">è¦æ³¨å…¥çš„å±æ€§ã€‚</param>
+        /// <param name="options">æ³¨å…¥é€‰é¡¹ã€‚</param>
         protected virtual void InjectProperty(object toReturn, PropertyInfo injectableProperty, ISnkPropertyInjectorOptions options)
         {
             object propertyValue;
-            // ³¢ÊÔ´ÓÒÀÀµ×¢ÈëÏµÍ³ÖĞ½âÎöÊôĞÔÖµ¡£
+            // å°è¯•ä»ä¾èµ–æ³¨å…¥ç³»ç»Ÿä¸­è§£æå±æ€§å€¼ã€‚
             if (SnkDIProvider.Instance.TryResolve(injectableProperty.PropertyType, out propertyValue) == true)
             {
                 try
                 {
-                    // ½«½âÎöµÄÖµÉèÖÃµ½ÊôĞÔÖĞ¡£
+                    // å°†è§£æçš„å€¼è®¾ç½®åˆ°å±æ€§ä¸­ã€‚
                     injectableProperty.SetValue(toReturn, propertyValue, null);
                 }
                 catch (TargetInvocationException invocation)
                 {
-                    // Èç¹û×¢ÈëÊ§°Ü£¬Å×³öÒì³£¡£
+                    // å¦‚æœæ³¨å…¥å¤±è´¥ï¼ŒæŠ›å‡ºå¼‚å¸¸ã€‚
                     throw new SnkDIResolveException(invocation, "Failed to inject into {0} on {1}", injectableProperty.Name, toReturn.GetType().Name);
                 }
             }
             else
             {
-                // Èç¹ûÊôĞÔ×¢ÈëÊ§°Ü£¬¸ù¾İÑ¡Ïî¾ö¶¨ÊÇ·ñÅ×³öÒì³£»ò¼ÇÂ¼¾¯¸æ¡£
+                // å¦‚æœå±æ€§æ³¨å…¥å¤±è´¥ï¼Œæ ¹æ®é€‰é¡¹å†³å®šæ˜¯å¦æŠ›å‡ºå¼‚å¸¸æˆ–è®°å½•è­¦å‘Šã€‚
                 if (options.ThrowIfPropertyInjectionFails)
                 {
                     throw new SnkDIResolveException("DependencyInjection property injection failed for {0} on {1}", injectableProperty.Name, toReturn.GetType().Name);
@@ -82,21 +82,21 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ²éÕÒÖ¸¶¨ÀàĞÍÖĞËùÓĞ¿É×¢ÈëµÄÊôĞÔ¡£
+        /// æŸ¥æ‰¾æŒ‡å®šç±»å‹ä¸­æ‰€æœ‰å¯æ³¨å…¥çš„å±æ€§ã€‚
         /// </summary>
-        /// <param name="type">Ä¿±ê¶ÔÏóµÄÀàĞÍ¡£</param>
-        /// <param name="options">×¢ÈëÑ¡Ïî¡£</param>
-        /// <returns>¿É×¢ÈëÊôĞÔµÄ¼¯ºÏ¡£</returns>
+        /// <param name="type">ç›®æ ‡å¯¹è±¡çš„ç±»å‹ã€‚</param>
+        /// <param name="options">æ³¨å…¥é€‰é¡¹ã€‚</param>
+        /// <returns>å¯æ³¨å…¥å±æ€§çš„é›†åˆã€‚</returns>
         protected virtual IEnumerable<PropertyInfo> FindInjectableProperties(Type type, ISnkPropertyInjectorOptions options)
         {
-            // ²éÕÒËùÓĞ·ûºÏ°ó¶¨±êÖ¾µÄ¹«¹²ÊµÀıÊôĞÔ¡£
+            // æŸ¥æ‰¾æ‰€æœ‰ç¬¦åˆç»‘å®šæ ‡å¿—çš„å…¬å…±å®ä¾‹å±æ€§ã€‚
             var injectableProperties = type
                 .GetProperties(InjectablePropertyBindingFlags)
                 .Where(p => p.PropertyType.GetTypeInfo().IsInterface)
                 .Where(p => p.IsConventional())
                 .Where(p => p.CanWrite);
 
-            // ¸ù¾İ×¢ÈëÑ¡Ïî¹ıÂËÊôĞÔ¡£
+            // æ ¹æ®æ³¨å…¥é€‰é¡¹è¿‡æ»¤å±æ€§ã€‚
             switch (options.InjectIntoProperties)
             {
                 case SnkPropertyInjection.InjectInterfaceProperties:

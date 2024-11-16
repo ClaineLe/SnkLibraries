@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,53 +7,53 @@ using SnkLogging;
 namespace SnkDependencyInjection
 {
     /// <summary>
-    /// <para>ÓÃÓÚÒÀÀµ×¢ÈëµÄÈİÆ÷Àà¡£</para>
-    /// <para>ÊµÏÖ½Ó¿Ú <see cref="ISnkDIProvider"/> </para>
+    /// <para>ç”¨äºä¾èµ–æ³¨å…¥çš„å®¹å™¨ç±»ã€‚</para>
+    /// <para>å®ç°æ¥å£ <see cref="ISnkDIProvider"/> </para>
     /// </summary>
     public sealed partial class SnkDIContainer : ISnkDIProvider
     {
         private static readonly ResolverType? ResolverTypeNoneSpecified = null;
 
         /// <summary>
-        /// ´æ´¢ÀàĞÍÓëÆä¶ÔÓ¦µÄ½âÎöÆ÷µÄ×Öµä¡£
+        /// å­˜å‚¨ç±»å‹ä¸å…¶å¯¹åº”çš„è§£æå™¨çš„å­—å…¸ã€‚
         /// </summary>
         private readonly Dictionary<Type, List<IResolver>> _resolvers = new Dictionary<Type, List<IResolver>>();
 
         /// <summary>
-        /// ÓÃÓÚ¼ì²âÑ­»·ÒÀÀµµÄ×Öµä¡£
+        /// ç”¨äºæ£€æµ‹å¾ªç¯ä¾èµ–çš„å­—å…¸ã€‚
         /// </summary>
         private readonly Dictionary<Type, bool> _circularTypeDetection = new Dictionary<Type, bool>();
 
         /// <summary>
-        /// ÓÃÓÚÏß³ÌÍ¬²½µÄËø¶ÔÏó¡£
+        /// ç”¨äºçº¿ç¨‹åŒæ­¥çš„é”å¯¹è±¡ã€‚
         /// </summary>
         private readonly object _locker = new object();
 
         /// <summary>
-        /// ÅäÖÃÑ¡Ïî¡£
+        /// é…ç½®é€‰é¡¹ã€‚
         /// </summary>
         private readonly ISnkDIOptions _options;
 
         /// <summary>
-        /// ÊôĞÔ×¢ÈëÆ÷¡£
+        /// å±æ€§æ³¨å…¥å™¨ã€‚
         /// </summary>
         private readonly ISnkPropertyInjector _propertyInjector;
 
         /// <summary>
-        /// ¸¸¼¶ÒÀÀµ×¢ÈëÌá¹©Õß¡£
+        /// çˆ¶çº§ä¾èµ–æ³¨å…¥æä¾›è€…ã€‚
         /// </summary>
         private readonly ISnkDIProvider _parentProvider;
 
         /// <summary>
-        /// »ñÈ¡ÅäÖÃÑ¡Ïî¡£
+        /// è·å–é…ç½®é€‰é¡¹ã€‚
         /// </summary>
         private ISnkDIOptions Options => _options;
 
         /// <summary>
-        /// Ê¹ÓÃÖ¸¶¨µÄÑ¡ÏîºÍ¸¸¼¶Ìá¹©Õß´´½¨Ò»¸öĞÂµÄ DI ÈİÆ÷ÊµÀı¡£
+        /// ä½¿ç”¨æŒ‡å®šçš„é€‰é¡¹å’Œçˆ¶çº§æä¾›è€…åˆ›å»ºä¸€ä¸ªæ–°çš„ DI å®¹å™¨å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="options">ÒÀÀµ×¢ÈëÅäÖÃÑ¡Ïî¡£</param>
-        /// <param name="parentProvider">¸¸¼¶ DI Ìá¹©Õß¡£</param>
+        /// <param name="options">ä¾èµ–æ³¨å…¥é…ç½®é€‰é¡¹ã€‚</param>
+        /// <param name="parentProvider">çˆ¶çº§ DI æä¾›è€…ã€‚</param>
         public SnkDIContainer(ISnkDIOptions options, ISnkDIProvider parentProvider = null)
         {
             _options = options ?? new SnkDIOptions();
@@ -72,10 +72,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃ¸¸¼¶Ìá¹©Õß´´½¨ DI ÈİÆ÷ÊµÀı¡£
+        /// ä½¿ç”¨çˆ¶çº§æä¾›è€…åˆ›å»º DI å®¹å™¨å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="parentProvider">¸¸¼¶ DI Ìá¹©Õß¡£</param>
-        /// <exception cref="ArgumentNullException">Èç¹û parentProvider Îª null£¬ÔòÅ×³öÒì³£¡£</exception>
+        /// <param name="parentProvider">çˆ¶çº§ DI æä¾›è€…ã€‚</param>
+        /// <exception cref="ArgumentNullException">å¦‚æœ parentProvider ä¸º nullï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸ã€‚</exception>
         public SnkDIContainer(ISnkDIProvider parentProvider) : this(null, parentProvider)
         {
             if (parentProvider == null)
@@ -85,20 +85,20 @@ namespace SnkDependencyInjection
         }
  
         /// <summary>
-        /// ¼ì²éÈİÆ÷ÊÇ·ñ¿ÉÒÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// æ£€æŸ¥å®¹å™¨æ˜¯å¦å¯ä»¥è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¼ì²éµÄÀàĞÍ¡£</typeparam>
-        /// <returns>Èç¹û¿ÉÒÔ½âÎö£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <typeparam name="T">è¦æ£€æŸ¥çš„ç±»å‹ã€‚</typeparam>
+        /// <returns>å¦‚æœå¯ä»¥è§£æï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool CanResolve<T>() where T : class
         {
             return CanResolve(typeof(T));
         }
 
         /// <summary>
-        /// ¼ì²éÈİÆ÷ÊÇ·ñ¿ÉÒÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// æ£€æŸ¥å®¹å™¨æ˜¯å¦å¯ä»¥è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª¼ì²éµÄÀàĞÍ¡£</param>
-        /// <returns>Èç¹û¿ÉÒÔ½âÎö£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦æ£€æŸ¥çš„ç±»å‹ã€‚</param>
+        /// <returns>å¦‚æœå¯ä»¥è§£æï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool CanResolve(Type type)
         {
             lock (_locker)
@@ -116,11 +116,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// å°è¯•è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª½âÎöµÄÀàĞÍ¡£</typeparam>
-        /// <param name="resolved">½âÎö³É¹¦Ê±·µ»ØµÄÊµÀı£»·ñÔò·µ»ØÀàĞÍµÄÄ¬ÈÏÊµÀı¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <typeparam name="T">è¦è§£æçš„ç±»å‹ã€‚</typeparam>
+        /// <param name="resolved">è§£ææˆåŠŸæ—¶è¿”å›çš„å®ä¾‹ï¼›å¦åˆ™è¿”å›ç±»å‹çš„é»˜è®¤å®ä¾‹ã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool TryResolve<T>(out T resolved) where T : class
         {
             try
@@ -137,11 +137,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// å°è¯•è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <param name="resolved">½âÎö³É¹¦Ê±·µ»ØµÄÊµÀı¶ÔÏó£»·ñÔòÎª null¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <param name="resolved">è§£ææˆåŠŸæ—¶è¿”å›çš„å®ä¾‹å¯¹è±¡ï¼›å¦åˆ™ä¸º nullã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool TryResolve(Type type, out object resolved)
         {
             lock (_locker)
@@ -151,11 +151,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¼¯ºÏ¡£
+        /// å°è¯•è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹é›†åˆã€‚
         /// </summary>
-        /// <typeparam name="T">Òª½âÎöµÄÀàĞÍ¡£</typeparam>
-        /// <param name="resolved">½âÎöºóµÄÊµÀı¼¯ºÏ¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <typeparam name="T">è¦è§£æçš„ç±»å‹ã€‚</typeparam>
+        /// <param name="resolved">è§£æåçš„å®ä¾‹é›†åˆã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool TryResolves<T>(out IEnumerable<T> resolved) where T : class
         {
             if (this._resolvers.TryGetValue(typeof(T), out var list) == false)
@@ -168,11 +168,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¼¯ºÏ¡£
+        /// å°è¯•è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹é›†åˆã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <param name="resolved">½âÎöºóµÄÊµÀı¼¯ºÏ¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <param name="resolved">è§£æåçš„å®ä¾‹é›†åˆã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         public bool TryResolves(Type type, out IEnumerable<object> resolved)
         {
             if (this._resolvers.TryGetValue(type, out var list) == false)
@@ -185,22 +185,22 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı£¬µ±½âÎöÊ§°ÜÊ±Å×³öÒì³£¡£
+        /// è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå½“è§£æå¤±è´¥æ—¶æŠ›å‡ºå¼‚å¸¸ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª½âÎöµÄÀàĞÍ¡£</typeparam>
-        /// <returns>½âÎöºóµÄÊµÀı¡£</returns>
-        /// <exception cref="SnkDIResolveException">µ±ÎŞ·¨½âÎöÀàĞÍÊ±Å×³ö¡£</exception>
+        /// <typeparam name="T">è¦è§£æçš„ç±»å‹ã€‚</typeparam>
+        /// <returns>è§£æåçš„å®ä¾‹ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å½“æ— æ³•è§£æç±»å‹æ—¶æŠ›å‡ºã€‚</exception>
         public T Resolve<T>() where T : class
         {
             return Resolve(typeof(T)) as T;
         }
 
         /// <summary>
-        /// ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı£¬µ±½âÎöÊ§°ÜÊ±Å×³öÒì³£¡£
+        /// è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå½“è§£æå¤±è´¥æ—¶æŠ›å‡ºå¼‚å¸¸ã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <returns>½âÎöºóµÄÊµÀı¡£</returns>
-        /// <exception cref="SnkDIResolveException">µ±ÎŞ·¨½âÎöÀàĞÍÊ±Å×³ö¡£</exception>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <returns>è§£æåçš„å®ä¾‹ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å½“æ— æ³•è§£æç±»å‹æ—¶æŠ›å‡ºã€‚</exception>
         public object Resolve(Type type)
         {
             lock (_locker)
@@ -214,10 +214,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¼¯ºÏ¡£
+        /// è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹é›†åˆã€‚
         /// </summary>
-        /// <typeparam name="T">Òª½âÎöµÄÀàĞÍ¡£</typeparam>
-        /// <returns>½âÎöºóµÄÊµÀı¼¯ºÏ¡£</returns>
+        /// <typeparam name="T">è¦è§£æçš„ç±»å‹ã€‚</typeparam>
+        /// <returns>è§£æåçš„å®ä¾‹é›†åˆã€‚</returns>
         public IEnumerable<T> Resolves<T>() where T : class
         {
             if (this._resolvers.TryGetValue(typeof(T), out var list) == false)
@@ -226,10 +226,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ½âÎöÖ¸¶¨ÀàĞÍµÄÊµÀı¼¯ºÏ¡£
+        /// è§£ææŒ‡å®šç±»å‹çš„å®ä¾‹é›†åˆã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <returns>½âÎöºóµÄÊµÀı¼¯ºÏ¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <returns>è§£æåçš„å®ä¾‹é›†åˆã€‚</returns>
         public IEnumerable<object> Resolves(Type type)
         {
             if (this._resolvers.TryGetValue(type, out var list) == false)
@@ -238,22 +238,22 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// »ñÈ¡Ö¸¶¨ÀàĞÍµÄµ¥ÀıÊµÀı£¬Èô²»´æÔÚ½«Å×³öÒì³£¡£
+        /// è·å–æŒ‡å®šç±»å‹çš„å•ä¾‹å®ä¾‹ï¼Œè‹¥ä¸å­˜åœ¨å°†æŠ›å‡ºå¼‚å¸¸ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª»ñÈ¡µÄÀàĞÍ¡£</typeparam>
-        /// <returns>µ¥ÀıÊµÀı¡£</returns>
-        /// <exception cref="SnkDIResolveException">µ±ÎŞ·¨»ñÈ¡µ¥ÀıÊ±Å×³ö¡£</exception>
+        /// <typeparam name="T">è¦è·å–çš„ç±»å‹ã€‚</typeparam>
+        /// <returns>å•ä¾‹å®ä¾‹ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å½“æ— æ³•è·å–å•ä¾‹æ—¶æŠ›å‡ºã€‚</exception>
         public T GetSingleton<T>() where T : class
         {
             return GetSingleton(typeof(T)) as T;
         }
 
         /// <summary>
-        /// »ñÈ¡Ö¸¶¨ÀàĞÍµÄµ¥ÀıÊµÀı£¬Èô²»´æÔÚ½«Å×³öÒì³£¡£
+        /// è·å–æŒ‡å®šç±»å‹çš„å•ä¾‹å®ä¾‹ï¼Œè‹¥ä¸å­˜åœ¨å°†æŠ›å‡ºå¼‚å¸¸ã€‚
         /// </summary>
-        /// <param name="type">Òª»ñÈ¡µÄÀàĞÍ¡£</param>
-        /// <returns>µ¥ÀıÊµÀı¡£</returns>
-        /// <exception cref="SnkDIResolveException">µ±ÎŞ·¨»ñÈ¡µ¥ÀıÊ±Å×³ö¡£</exception>
+        /// <param name="type">è¦è·å–çš„ç±»å‹ã€‚</param>
+        /// <returns>å•ä¾‹å®ä¾‹ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å½“æ— æ³•è·å–å•ä¾‹æ—¶æŠ›å‡ºã€‚</exception>
         public object GetSingleton(Type type)
         {
             lock (_locker)
@@ -267,21 +267,21 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ´´½¨Ö¸¶¨ÀàĞÍµÄĞÂÊµÀı£¬Ã¿´Îµ÷ÓÃ·µ»Ø²»Í¬µÄ¶ÔÏó¡£
+        /// åˆ›å»ºæŒ‡å®šç±»å‹çš„æ–°å®ä¾‹ï¼Œæ¯æ¬¡è°ƒç”¨è¿”å›ä¸åŒçš„å¯¹è±¡ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª´´½¨µÄÀàĞÍ¡£</typeparam>
-        /// <returns>´´½¨µÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦åˆ›å»ºçš„ç±»å‹ã€‚</typeparam>
+        /// <returns>åˆ›å»ºçš„å®ä¾‹ã€‚</returns>
         public T Create<T>() where T : class
         {
             return Create(typeof(T)) as T;
         }
 
         /// <summary>
-        /// ´´½¨Ö¸¶¨ÀàĞÍµÄĞÂÊµÀı£¬Ã¿´Îµ÷ÓÃ·µ»Ø²»Í¬µÄ¶ÔÏó¡£
+        /// åˆ›å»ºæŒ‡å®šç±»å‹çš„æ–°å®ä¾‹ï¼Œæ¯æ¬¡è°ƒç”¨è¿”å›ä¸åŒçš„å¯¹è±¡ã€‚
         /// </summary>
-        /// <param name="type">Òª´´½¨µÄÀàĞÍ¡£</param>
-        /// <returns>´´½¨µÄÊµÀı¡£</returns>
-        /// <exception cref="SnkDIResolveException">µ±ÎŞ·¨´´½¨ÊµÀıÊ±Å×³ö¡£</exception>
+        /// <param name="type">è¦åˆ›å»ºçš„ç±»å‹ã€‚</param>
+        /// <returns>åˆ›å»ºçš„å®ä¾‹ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å½“æ— æ³•åˆ›å»ºå®ä¾‹æ—¶æŠ›å‡ºã€‚</exception>
         public object Create(Type type)
         {
             lock (_locker)
@@ -295,10 +295,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ×¢²áÀàĞÍÓ³Éä£¬½«½Ó¿ÚÀàĞÍÓë¾ßÌåÊµÏÖ»ò¹¹Ôìº¯Êı¹ØÁª¡£
+        /// æ³¨å†Œç±»å‹æ˜ å°„ï¼Œå°†æ¥å£ç±»å‹ä¸å…·ä½“å®ç°æˆ–æ„é€ å‡½æ•°å…³è”ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">Ô´½Ó¿ÚÀàĞÍ¡£</typeparam>
-        /// <typeparam name="TToConstruct">Ä¿±êÊµÏÖÀàĞÍ¡£</typeparam>
+        /// <typeparam name="TInterface">æºæ¥å£ç±»å‹ã€‚</typeparam>
+        /// <typeparam name="TToConstruct">ç›®æ ‡å®ç°ç±»å‹ã€‚</typeparam>
         public void RegisterType<TInterface, TToConstruct>()
             where TInterface : class
             where TToConstruct : class, TInterface
@@ -307,10 +307,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ×¢²áÀàĞÍÓ³Éä£¬Ê¹ÓÃÎ¯ÍĞ¹¹Ôì½Ó¿ÚÀàĞÍµÄÊµÀı¡£
+        /// æ³¨å†Œç±»å‹æ˜ å°„ï¼Œä½¿ç”¨å§”æ‰˜æ„é€ æ¥å£ç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàĞÍ¡£</typeparam>
-        /// <param name="constructor">ÓÃÓÚ´´½¨ÊµÀıµÄ¹¹Ôìº¯ÊıÎ¯ÍĞ¡£</param>
+        /// <typeparam name="TInterface">æ¥å£ç±»å‹ã€‚</typeparam>
+        /// <param name="constructor">ç”¨äºåˆ›å»ºå®ä¾‹çš„æ„é€ å‡½æ•°å§”æ‰˜ã€‚</param>
         public void RegisterType<TInterface>(Func<TInterface> constructor) where TInterface : class
         {
             var resolver = new FuncConstructingResolver(constructor);
@@ -318,11 +318,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ×¢²áÀàĞÍÓ³Éä£¬Ê¹ÓÃÎ¯ÍĞ¹¹ÔìÊµÀı¡£
+        /// æ³¨å†Œç±»å‹æ˜ å°„ï¼Œä½¿ç”¨å§”æ‰˜æ„é€ å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="t">½Ó¿Ú»ò»ùÀàÀàĞÍ¡£</param>
-        /// <param name="constructor">¹¹Ôìº¯ÊıÎ¯ÍĞ¡£</param>
-        /// <exception cref="SnkDIResolveException">µ±¹¹Ôìº¯Êı·µ»ØµÄ¶ÔÏóÓëÀàĞÍ²»¼æÈİÊ±Å×³ö¡£</exception>
+        /// <param name="t">æ¥å£æˆ–åŸºç±»ç±»å‹ã€‚</param>
+        /// <param name="constructor">æ„é€ å‡½æ•°å§”æ‰˜ã€‚</param>
+        /// <exception cref="SnkDIResolveException">å½“æ„é€ å‡½æ•°è¿”å›çš„å¯¹è±¡ä¸ç±»å‹ä¸å…¼å®¹æ—¶æŠ›å‡ºã€‚</exception>
         public void RegisterType(Type t, Func<object> constructor)
         {
             var resolver = new FuncConstructingResolver(() =>
@@ -339,10 +339,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ×¢²áÀàĞÍÓ³Éä£¬½«Ò»¸öÀàĞÍÓ³Éäµ½ÁíÒ»¸öÀàĞÍ£¬µ±ÇëÇó½âÎöÔ´ÀàĞÍÊ±´´½¨Ä¿±êÀàĞÍµÄÊµÀı¡£
+        /// æ³¨å†Œç±»å‹æ˜ å°„ï¼Œå°†ä¸€ä¸ªç±»å‹æ˜ å°„åˆ°å¦ä¸€ä¸ªç±»å‹ï¼Œå½“è¯·æ±‚è§£ææºç±»å‹æ—¶åˆ›å»ºç›®æ ‡ç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="tFrom">Ô´ÀàĞÍ¡£</param>
-        /// <param name="tTo">Ä¿±êÀàĞÍ¡£</param>
+        /// <param name="tFrom">æºç±»å‹ã€‚</param>
+        /// <param name="tTo">ç›®æ ‡ç±»å‹ã€‚</param>
         public void RegisterType(Type tFrom, Type tTo)
         {
             IResolver resolver;
@@ -354,117 +354,117 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ×¢²áÒ»¸öµ¥ÀıÊµÀı£¬½Ó¿ÚÀàĞÍÓë¾ßÌåÊµÀı¹ØÁª¡£
+        /// æ³¨å†Œä¸€ä¸ªå•ä¾‹å®ä¾‹ï¼Œæ¥å£ç±»å‹ä¸å…·ä½“å®ä¾‹å…³è”ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàĞÍ¡£</typeparam>
-        /// <param name="theObject">µ¥ÀıÊµÀı¡£</param>
+        /// <typeparam name="TInterface">æ¥å£ç±»å‹ã€‚</typeparam>
+        /// <param name="theObject">å•ä¾‹å®ä¾‹ã€‚</param>
         public void RegisterSingleton<TInterface>(TInterface theObject) where TInterface : class
         {
             RegisterSingleton(typeof(TInterface), theObject);
         }
 
         /// <summary>
-        /// ×¢²áÒ»¸öµ¥ÀıÊµÀı£¬½Ó¿ÚÀàĞÍÓë¾ßÌåÊµÀı¹ØÁª¡£
+        /// æ³¨å†Œä¸€ä¸ªå•ä¾‹å®ä¾‹ï¼Œæ¥å£ç±»å‹ä¸å…·ä½“å®ä¾‹å…³è”ã€‚
         /// </summary>
-        /// <param name="tInterface">½Ó¿ÚÀàĞÍ¡£</param>
-        /// <param name="theObject">µ¥ÀıÊµÀı¡£</param>
+        /// <param name="tInterface">æ¥å£ç±»å‹ã€‚</param>
+        /// <param name="theObject">å•ä¾‹å®ä¾‹ã€‚</param>
         public void RegisterSingleton(Type tInterface, object theObject)
         {
             InternalSetResolver(tInterface, new SingletonResolver(theObject));
         }
 
         /// <summary>
-        /// ×¢²áµ¥ÀıÊµÀı£¬Ê¹ÓÃ¹¹Ôìº¯ÊıÎ¯ÍĞ¡£
+        /// æ³¨å†Œå•ä¾‹å®ä¾‹ï¼Œä½¿ç”¨æ„é€ å‡½æ•°å§”æ‰˜ã€‚
         /// </summary>
-        /// <typeparam name="TInterface">½Ó¿ÚÀàĞÍ¡£</typeparam>
-        /// <param name="theConstructor">ÓÃÓÚ´´½¨µ¥ÀıÊµÀıµÄ¹¹Ôìº¯ÊıÎ¯ÍĞ¡£</param>
+        /// <typeparam name="TInterface">æ¥å£ç±»å‹ã€‚</typeparam>
+        /// <param name="theConstructor">ç”¨äºåˆ›å»ºå•ä¾‹å®ä¾‹çš„æ„é€ å‡½æ•°å§”æ‰˜ã€‚</param>
         public void RegisterSingleton<TInterface>(Func<TInterface> theConstructor) where TInterface : class
         {
             RegisterSingleton(typeof(TInterface), theConstructor);
         }
 
         /// <summary>
-        /// ×¢²áµ¥ÀıÊµÀı£¬Ê¹ÓÃ¹¹Ôìº¯ÊıÎ¯ÍĞ¡£
+        /// æ³¨å†Œå•ä¾‹å®ä¾‹ï¼Œä½¿ç”¨æ„é€ å‡½æ•°å§”æ‰˜ã€‚
         /// </summary>
-        /// <param name="tInterface">½Ó¿ÚÀàĞÍ¡£</param>
-        /// <param name="theConstructor">¹¹Ôìº¯ÊıÎ¯ÍĞ¡£</param>
+        /// <param name="tInterface">æ¥å£ç±»å‹ã€‚</param>
+        /// <param name="theConstructor">æ„é€ å‡½æ•°å§”æ‰˜ã€‚</param>
         public void RegisterSingleton(Type tInterface, Func<object> theConstructor)
         {
             InternalSetResolver(tInterface, new ConstructingSingletonResolver(theConstructor));
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public object DIConstruct(Type type)
         {
             return DIConstruct(type, (IDictionary<string, object>)null);
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <param name="arguments">ÓÃÓÚ¹¹Ôìº¯ÊıµÄ²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
-        /// <exception cref="SnkDIResolveException">µ±ÎŞ·¨ÕÒµ½ÊÊÓÃµÄ¹¹Ôìº¯ÊıÊ±Å×³ö¡£</exception>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <param name="arguments">ç”¨äºæ„é€ å‡½æ•°çš„å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å½“æ— æ³•æ‰¾åˆ°é€‚ç”¨çš„æ„é€ å‡½æ•°æ—¶æŠ›å‡ºã€‚</exception>
         public object DIConstruct(Type type, object arguments)
         {
             return DIConstruct(type, arguments?.ToPropertyDictionary());
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¹¹ÔìµÄÀàĞÍ¡£</typeparam>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦æ„é€ çš„ç±»å‹ã€‚</typeparam>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public T DIConstruct<T>() where T : class
         {
             return DIConstruct(typeof(T), (IDictionary<string, object>)null) as T;
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¹¹ÔìµÄÀàĞÍ¡£</typeparam>
-        /// <param name="arguments">ÓÃÓÚ¹¹Ôìº¯ÊıµÄ²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦æ„é€ çš„ç±»å‹ã€‚</typeparam>
+        /// <param name="arguments">ç”¨äºæ„é€ å‡½æ•°çš„å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public T DIConstruct<T>(IDictionary<string, object> arguments) where T : class
         {
             return DIConstruct(typeof(T), arguments) as T;
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¹¹ÔìµÄÀàĞÍ¡£</typeparam>
-        /// <param name="arguments">ÓÃÓÚ¹¹Ôìº¯ÊıµÄ²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦æ„é€ çš„ç±»å‹ã€‚</typeparam>
+        /// <param name="arguments">ç”¨äºæ„é€ å‡½æ•°çš„å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public T DIConstruct<T>(object arguments) where T : class
         {
             return DIConstruct(typeof(T), arguments?.ToPropertyDictionary()) as T;
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <typeparam name="T">Òª¹¹ÔìµÄÀàĞÍ¡£</typeparam>
-        /// <param name="arguments">ÓÃÓÚ¹¹Ôìº¯ÊıµÄ²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
+        /// <typeparam name="T">è¦æ„é€ çš„ç±»å‹ã€‚</typeparam>
+        /// <param name="arguments">ç”¨äºæ„é€ å‡½æ•°çš„å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
         public T DIConstruct<T>(params object[] arguments) where T : class
         {
             return DIConstruct(typeof(T), arguments) as T;
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <param name="arguments">ÓÃÓÚ¹¹Ôìº¯ÊıµÄ²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
-        /// <exception cref="SnkDIResolveException">µ±ÎŞ·¨ÕÒµ½ÊÊÓÃµÄ¹¹Ôìº¯ÊıÊ±Å×³ö¡£</exception>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <param name="arguments">ç”¨äºæ„é€ å‡½æ•°çš„å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å½“æ— æ³•æ‰¾åˆ°é€‚ç”¨çš„æ„é€ å‡½æ•°æ—¶æŠ›å‡ºã€‚</exception>
         public object DIConstruct(Type type, params object[] arguments)
         {
             var selectedConstructor = type.FindApplicableConstructor(arguments);
@@ -480,12 +480,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ê¹ÓÃÒÀÀµ×¢Èë¹¹ÔìÖ¸¶¨ÀàĞÍµÄÊµÀı£¬²¢´«µİ²ÎÊı¡£
+        /// ä½¿ç”¨ä¾èµ–æ³¨å…¥æ„é€ æŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶ä¼ é€’å‚æ•°ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <param name="arguments">ÓÃÓÚ¹¹Ôìº¯ÊıµÄ²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄÊµÀı¡£</returns>
-        /// <exception cref="SnkDIResolveException">µ±ÎŞ·¨ÕÒµ½ÊÊÓÃµÄ¹¹Ôìº¯ÊıÊ±Å×³ö¡£</exception>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <param name="arguments">ç”¨äºæ„é€ å‡½æ•°çš„å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å®ä¾‹ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å½“æ— æ³•æ‰¾åˆ°é€‚ç”¨çš„æ„é€ å‡½æ•°æ—¶æŠ›å‡ºã€‚</exception>
         public object DIConstruct(Type type, IDictionary<string, object> arguments)
         {
             var selectedConstructor = type.FindApplicableConstructor(arguments);
@@ -500,7 +500,7 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Çå¿ÕËùÓĞ½âÎöÆ÷£¬·ÇÊÍ·Å½âÎöÆ÷£¬Îª±ÜÃâĞ¹Â¶£¬ÇëÊÍ·Åºó½âÎöÆ÷ºó£¬ÔÙ½øĞĞÇå¿Õ²Ù×÷
+        /// æ¸…ç©ºæ‰€æœ‰è§£æå™¨ï¼Œéé‡Šæ”¾è§£æå™¨ï¼Œä¸ºé¿å…æ³„éœ²ï¼Œè¯·é‡Šæ”¾åè§£æå™¨åï¼Œå†è¿›è¡Œæ¸…ç©ºæ“ä½œ
         /// </summary>
         public void CleanAllResolvers()
         {
@@ -512,19 +512,19 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ´´½¨²¢·µ»ØÒ»¸öĞÂµÄ×ÓÈİÆ÷£¬¼Ì³Ğµ±Ç°ÈİÆ÷µÄÅäÖÃ¡£
+        /// åˆ›å»ºå¹¶è¿”å›ä¸€ä¸ªæ–°çš„å­å®¹å™¨ï¼Œç»§æ‰¿å½“å‰å®¹å™¨çš„é…ç½®ã€‚
         /// </summary>
-        /// <returns>×ÓÈİÆ÷ÊµÀı¡£</returns>
+        /// <returns>å­å®¹å™¨å®ä¾‹ã€‚</returns>
         public ISnkDIProvider CreateChildContainer() => new SnkDIContainer(this);
 
         /// <summary>
-        /// ¹¹½¨Ö¸¶¨ÀàĞÍµÄÊµÀı£¬²¢×¢ÈëÊôĞÔ¡£
+        /// æ„å»ºæŒ‡å®šç±»å‹çš„å®ä¾‹ï¼Œå¹¶æ³¨å…¥å±æ€§ã€‚
         /// </summary>
-        /// <param name="type">Òª¹¹ÔìµÄÀàĞÍ¡£</param>
-        /// <param name="constructor">Ê¹ÓÃµÄ¹¹Ôìº¯Êı¡£</param>
-        /// <param name="arguments">¹¹Ôìº¯Êı²ÎÊı¡£</param>
-        /// <returns>¹¹ÔìµÄ¶ÔÏó¡£</returns>
-        /// <exception cref="SnkDIResolveException">Èç¹û¹¹ÔìÊ§°Ü£¬ÔòÅ×³öÒì³£¡£</exception>
+        /// <param name="type">è¦æ„é€ çš„ç±»å‹ã€‚</param>
+        /// <param name="constructor">ä½¿ç”¨çš„æ„é€ å‡½æ•°ã€‚</param>
+        /// <param name="arguments">æ„é€ å‡½æ•°å‚æ•°ã€‚</param>
+        /// <returns>æ„é€ çš„å¯¹è±¡ã€‚</returns>
+        /// <exception cref="SnkDIResolveException">å¦‚æœæ„é€ å¤±è´¥ï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸ã€‚</exception>
         private object DIConstruct(Type type, ConstructorInfo constructor, object[] arguments)
         {
             object toReturn;
@@ -546,7 +546,7 @@ namespace SnkDependencyInjection
                 if (!Options.CheckDisposeIfPropertyInjectionFails)
                     throw;
 
-                // ÀàĞÍ×ª»»¼ì²é£¬Èç¹û³É¹¦Ôòµ÷ÓÃ Dispose ·½·¨
+                // ç±»å‹è½¬æ¢æ£€æŸ¥ï¼Œå¦‚æœæˆåŠŸåˆ™è°ƒç”¨ Dispose æ–¹æ³•
                 if (toReturn is IDisposable disposable)
                     disposable.Dispose();
                 throw;
@@ -555,11 +555,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¼ì²é½âÎöÆ÷ÊÇ·ñÖ§³ÖÖ¸¶¨µÄ½âÎöÀàĞÍ¡£
+        /// æ£€æŸ¥è§£æå™¨æ˜¯å¦æ”¯æŒæŒ‡å®šçš„è§£æç±»å‹ã€‚
         /// </summary>
-        /// <param name="resolver">½âÎöÆ÷¶ÔÏó¡£</param>
-        /// <param name="requiredResolverType">ĞèÒªµÄ½âÎöÀàĞÍ¡£</param>
-        /// <returns>Èç¹ûÖ§³Ö£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="resolver">è§£æå™¨å¯¹è±¡ã€‚</param>
+        /// <param name="requiredResolverType">éœ€è¦çš„è§£æç±»å‹ã€‚</param>
+        /// <returns>å¦‚æœæ”¯æŒï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         private static bool Supports(IResolver resolver, ResolverType? requiredResolverType)
         {
             if (resolver == null)
@@ -572,23 +572,23 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÀàĞÍµÄÊµÀı¡£
+        /// å°è¯•è§£æç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <param name="resolved">½âÎöºóµÄ¶ÔÏó¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <param name="resolved">è§£æåçš„å¯¹è±¡ã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         private bool InternalTryResolve(Type type, out object resolved)
         {
             return InternalTryResolve(type, ResolverTypeNoneSpecified, out resolved);
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎöÀàĞÍµÄÊµÀı£¬¿¼ÂÇÖ¸¶¨µÄ½âÎöÀàĞÍ¡£
+        /// å°è¯•è§£æç±»å‹çš„å®ä¾‹ï¼Œè€ƒè™‘æŒ‡å®šçš„è§£æç±»å‹ã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <param name="requiredResolverType">ĞèÒªµÄ½âÎöÀàĞÍ¡£</param>
-        /// <param name="resolved">½âÎöºóµÄ¶ÔÏó¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <param name="requiredResolverType">éœ€è¦çš„è§£æç±»å‹ã€‚</param>
+        /// <param name="resolved">è§£æåçš„å¯¹è±¡ã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         private bool InternalTryResolve(Type type, ResolverType? requiredResolverType, out object resolved)
         {
             if (!TryGetResolver(type, out var resolver))
@@ -612,12 +612,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³¢ÊÔÊ¹ÓÃÖ¸¶¨½âÎöÆ÷½âÎöÀàĞÍµÄÊµÀı¡£
+        /// å°è¯•ä½¿ç”¨æŒ‡å®šè§£æå™¨è§£æç±»å‹çš„å®ä¾‹ã€‚
         /// </summary>
-        /// <param name="type">Òª½âÎöµÄÀàĞÍ¡£</param>
-        /// <param name="resolver">ÓÃÓÚ½âÎöµÄ½âÎöÆ÷¡£</param>
-        /// <param name="resolved">½âÎöºóµÄ¶ÔÏó¡£</param>
-        /// <returns>Èç¹û½âÎö³É¹¦£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <param name="resolver">ç”¨äºè§£æçš„è§£æå™¨ã€‚</param>
+        /// <param name="resolved">è§£æåçš„å¯¹è±¡ã€‚</param>
+        /// <returns>å¦‚æœè§£ææˆåŠŸï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         private bool InternalTryResolve(Type type, IResolver resolver, out object resolved)
         {
             var detectingCircular = ShouldDetectCircularReferencesFor(resolver);
@@ -665,11 +665,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³¢ÊÔ»ñÈ¡Ö¸¶¨ÀàĞÍµÄ½âÎöÆ÷¡£
+        /// å°è¯•è·å–æŒ‡å®šç±»å‹çš„è§£æå™¨ã€‚
         /// </summary>
-        /// <param name="type">ĞèÒª½âÎöµÄÀàĞÍ¡£</param>
-        /// <param name="resolver">²éÕÒµ½µÄ½âÎöÆ÷¡£</param>
-        /// <returns>Èç¹ûÕÒµ½½âÎöÆ÷£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
+        /// <param name="type">éœ€è¦è§£æçš„ç±»å‹ã€‚</param>
+        /// <param name="resolver">æŸ¥æ‰¾åˆ°çš„è§£æå™¨ã€‚</param>
+        /// <returns>å¦‚æœæ‰¾åˆ°è§£æå™¨ï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
         private bool TryGetResolver(Type type, out IResolver resolver)
         {
             if (_resolvers.TryGetValue(type, out var list))
@@ -693,11 +693,11 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ÅĞ¶Ï½âÎöÆ÷ÊÇ·ñĞèÒª¼ì²âÑ­»·ÒıÓÃ¡£
+        /// åˆ¤æ–­è§£æå™¨æ˜¯å¦éœ€è¦æ£€æµ‹å¾ªç¯å¼•ç”¨ã€‚
         /// </summary>
-        /// <param name="resolver">Òª¼ì²éµÄ½âÎöÆ÷¡£</param>
-        /// <returns>Èç¹ûĞèÒª¼ì²â£¬·µ»Ø true£»·ñÔò·µ»Ø false¡£</returns>
-        /// <exception cref="SnkException">Èç¹û½âÎöÆ÷ÀàĞÍÎ´Öª£¬Å×³öÒì³£¡£</exception>
+        /// <param name="resolver">è¦æ£€æŸ¥çš„è§£æå™¨ã€‚</param>
+        /// <returns>å¦‚æœéœ€è¦æ£€æµ‹ï¼Œè¿”å› trueï¼›å¦åˆ™è¿”å› falseã€‚</returns>
+        /// <exception cref="SnkException">å¦‚æœè§£æå™¨ç±»å‹æœªçŸ¥ï¼ŒæŠ›å‡ºå¼‚å¸¸ã€‚</exception>
         private bool ShouldDetectCircularReferencesFor(IResolver resolver)
         {
             switch (resolver.ResolveType)
@@ -716,10 +716,10 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ÉèÖÃÀàĞÍµÄ½âÎöÆ÷¡£
+        /// è®¾ç½®ç±»å‹çš„è§£æå™¨ã€‚
         /// </summary>
-        /// <param name="interfaceType">½Ó¿ÚÀàĞÍ¡£</param>
-        /// <param name="resolver">½âÎöÆ÷¡£</param>
+        /// <param name="interfaceType">æ¥å£ç±»å‹ã€‚</param>
+        /// <param name="resolver">è§£æå™¨ã€‚</param>
         private void InternalSetResolver(Type interfaceType, IResolver resolver)
         {
             lock (_locker)
@@ -734,21 +734,21 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// Ïò¶ÔÏóÖĞ×¢ÈëÊôĞÔ¡£
+        /// å‘å¯¹è±¡ä¸­æ³¨å…¥å±æ€§ã€‚
         /// </summary>
-        /// <param name="toReturn">´ı½øĞĞÊôĞÔ×¢ÈëµÄ¶ÔÏó¡£</param>
+        /// <param name="toReturn">å¾…è¿›è¡Œå±æ€§æ³¨å…¥çš„å¯¹è±¡ã€‚</param>
         private void InjectProperties(object toReturn)
         {
             _propertyInjector?.Inject(toReturn, _options.PropertyInjectorOptions);
         }
 
         /// <summary>
-        /// »ñÈ¡ÒÀÀµ×¢Èë¹¹Ôìº¯Êı²ÎÊıÖµ¡£
+        /// è·å–ä¾èµ–æ³¨å…¥æ„é€ å‡½æ•°å‚æ•°å€¼ã€‚
         /// </summary>
-        /// <param name="type">¹¹ÔìÀàĞÍ¡£</param>
-        /// <param name="selectedConstructor">Ñ¡ÔñµÄ¹¹Ôì·½·¨¡£</param>
-        /// <param name="arguments">²ÎÊı×Öµä¡£</param>
-        /// <returns>²ÎÊıÖµÁĞ±í¡£</returns>
+        /// <param name="type">æ„é€ ç±»å‹ã€‚</param>
+        /// <param name="selectedConstructor">é€‰æ‹©çš„æ„é€ æ–¹æ³•ã€‚</param>
+        /// <param name="arguments">å‚æ•°å­—å…¸ã€‚</param>
+        /// <returns>å‚æ•°å€¼åˆ—è¡¨ã€‚</returns>
         private List<object> GetDIParameterValues(Type type, MethodBase selectedConstructor, IDictionary<string, object> arguments)
         {
             var parameters = new List<object>();
@@ -768,12 +768,12 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// »ñÈ¡ÒÀÀµ×¢Èë¹¹Ôìº¯Êı²ÎÊıÖµ¡£
+        /// è·å–ä¾èµ–æ³¨å…¥æ„é€ å‡½æ•°å‚æ•°å€¼ã€‚
         /// </summary>
-        /// <param name="type">¹¹ÔìÀàĞÍ¡£</param>
-        /// <param name="selectedConstructor">Ñ¡ÔñµÄ¹¹Ôì·½·¨¡£</param>
-        /// <param name="arguments">²ÎÊıÊı×é¡£</param>
-        /// <returns>²ÎÊıÖµÁĞ±í¡£</returns>
+        /// <param name="type">æ„é€ ç±»å‹ã€‚</param>
+        /// <param name="selectedConstructor">é€‰æ‹©çš„æ„é€ æ–¹æ³•ã€‚</param>
+        /// <param name="arguments">å‚æ•°æ•°ç»„ã€‚</param>
+        /// <returns>å‚æ•°å€¼åˆ—è¡¨ã€‚</returns>
         private List<object> GetDIParameterValues(Type type, MethodBase selectedConstructor, object[] arguments)
         {
             var parameters = new List<object>();
@@ -800,13 +800,13 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ³¢ÊÔ½âÎö¹¹Ôìº¯Êı²ÎÊı¡£
+        /// å°è¯•è§£ææ„é€ å‡½æ•°å‚æ•°ã€‚
         /// </summary>
-        /// <param name="type">¹¹ÔìÀàĞÍ¡£</param>
-        /// <param name="parameterInfo">²ÎÊıĞÅÏ¢¡£</param>
-        /// <param name="parameterValue">½âÎöºóµÄ²ÎÊıÖµ¡£</param>
-        /// <returns>½âÎö½á¹û£¬³É¹¦Îª true£¬Ê§°ÜÎª false¡£</returns>
-        /// <exception cref="SnkDIResolveException">½âÎöÊ§°ÜÊ±Å×³öÒì³£¡£</exception>
+        /// <param name="type">æ„é€ ç±»å‹ã€‚</param>
+        /// <param name="parameterInfo">å‚æ•°ä¿¡æ¯ã€‚</param>
+        /// <param name="parameterValue">è§£æåçš„å‚æ•°å€¼ã€‚</param>
+        /// <returns>è§£æç»“æœï¼ŒæˆåŠŸä¸º trueï¼Œå¤±è´¥ä¸º falseã€‚</returns>
+        /// <exception cref="SnkDIResolveException">è§£æå¤±è´¥æ—¶æŠ›å‡ºå¼‚å¸¸ã€‚</exception>
         private bool TryResolveParameter(Type type, ParameterInfo parameterInfo, out object parameterValue)
         {
             if (!TryResolve(parameterInfo.ParameterType, out parameterValue))

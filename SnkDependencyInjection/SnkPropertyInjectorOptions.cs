@@ -1,44 +1,44 @@
-namespace SnkDependencyInjection
+ï»¿namespace SnkDependencyInjection
 {
     /// <summary>
-    /// ±íÊ¾ÊôĞÔ×¢ÈëÑ¡ÏîµÄÀà¡£
+    /// è¡¨ç¤ºå±æ€§æ³¨å…¥é€‰é¡¹çš„ç±»ã€‚
     /// </summary>
     public class SnkPropertyInjectorOptions : ISnkPropertyInjectorOptions
     {
         /// <summary>
-        /// ³õÊ¼»¯ <see cref="SnkPropertyInjectorOptions"/> ÀàµÄĞÂÊµÀı£¬ÉèÖÃÄ¬ÈÏÑ¡Ïî¡£
+        /// åˆå§‹åŒ– <see cref="SnkPropertyInjectorOptions"/> ç±»çš„æ–°å®ä¾‹ï¼Œè®¾ç½®é»˜è®¤é€‰é¡¹ã€‚
         /// </summary>
         public SnkPropertyInjectorOptions()
         {
-            // Ä¬ÈÏÎª²»½øĞĞÈÎºÎÊôĞÔ×¢Èë
+            // é»˜è®¤ä¸ºä¸è¿›è¡Œä»»ä½•å±æ€§æ³¨å…¥
             InjectIntoProperties = SnkPropertyInjection.None;
-            // Ä¬ÈÏÎªÊôĞÔ×¢ÈëÊ§°ÜÊ±²»Å×³öÒì³£
+            // é»˜è®¤ä¸ºå±æ€§æ³¨å…¥å¤±è´¥æ—¶ä¸æŠ›å‡ºå¼‚å¸¸
             ThrowIfPropertyInjectionFails = false;
         }
 
         /// <summary>
-        /// »ñÈ¡»òÉèÖÃÊôĞÔ×¢ÈëµÄÀàĞÍ¡£
+        /// è·å–æˆ–è®¾ç½®å±æ€§æ³¨å…¥çš„ç±»å‹ã€‚
         /// </summary>
         public SnkPropertyInjection InjectIntoProperties { get; set; }
 
         /// <summary>
-        /// »ñÈ¡»òÉèÖÃÒ»¸öÖµ£¬¸ÃÖµÖ¸Ê¾ÊÇ·ñÔÚÊôĞÔ×¢ÈëÊ§°ÜÊ±Å×³öÒì³£¡£
+        /// è·å–æˆ–è®¾ç½®ä¸€ä¸ªå€¼ï¼Œè¯¥å€¼æŒ‡ç¤ºæ˜¯å¦åœ¨å±æ€§æ³¨å…¥å¤±è´¥æ—¶æŠ›å‡ºå¼‚å¸¸ã€‚
         /// </summary>
         public bool ThrowIfPropertyInjectionFails { get; set; }
 
         /// <summary>
-        /// ¾²Ì¬×Ö¶Î£¬ÓÃÓÚ´æ´¢×¢ÈëÊôĞÔÑ¡ÏîµÄÊµÀı¡£
+        /// é™æ€å­—æ®µï¼Œç”¨äºå­˜å‚¨æ³¨å…¥å±æ€§é€‰é¡¹çš„å®ä¾‹ã€‚
         /// </summary>
         private static ISnkPropertyInjectorOptions _injectProperties;
 
         /// <summary>
-        /// »ñÈ¡ÓÃÓÚ×¢Èë½Ó¿ÚÊôĞÔµÄÑ¡ÏîÊµÀı¡£
+        /// è·å–ç”¨äºæ³¨å…¥æ¥å£å±æ€§çš„é€‰é¡¹å®ä¾‹ã€‚
         /// </summary>
         public static ISnkPropertyInjectorOptions Inject
         {
             get
             {
-                // Èç¹ûÉĞÎ´³õÊ¼»¯£¬Ôò´´½¨Ò»¸öĞÂÊµÀı²¢ÉèÖÃÎª×¢Èë½Ó¿ÚÊôĞÔ
+                // å¦‚æœå°šæœªåˆå§‹åŒ–ï¼Œåˆ™åˆ›å»ºä¸€ä¸ªæ–°å®ä¾‹å¹¶è®¾ç½®ä¸ºæ³¨å…¥æ¥å£å±æ€§
                 _injectProperties = _injectProperties ?? new SnkPropertyInjectorOptions()
                 {
                     InjectIntoProperties = SnkPropertyInjection.InjectInterfaceProperties,
@@ -49,18 +49,18 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
-        /// ¾²Ì¬×Ö¶Î£¬ÓÃÓÚ´æ´¢È«²¿ÊôĞÔ×¢ÈëÑ¡ÏîµÄÊµÀı¡£
+        /// é™æ€å­—æ®µï¼Œç”¨äºå­˜å‚¨å…¨éƒ¨å±æ€§æ³¨å…¥é€‰é¡¹çš„å®ä¾‹ã€‚
         /// </summary>
         private static ISnkPropertyInjectorOptions _allProperties;
 
         /// <summary>
-        /// »ñÈ¡ÓÃÓÚ×¢ÈëËùÓĞ½Ó¿ÚÊôĞÔµÄÑ¡ÏîÊµÀı¡£
+        /// è·å–ç”¨äºæ³¨å…¥æ‰€æœ‰æ¥å£å±æ€§çš„é€‰é¡¹å®ä¾‹ã€‚
         /// </summary>
         public static ISnkPropertyInjectorOptions All
         {
             get
             {
-                // Èç¹ûÉĞÎ´³õÊ¼»¯£¬Ôò´´½¨Ò»¸öĞÂÊµÀı²¢ÉèÖÃÎª×¢ÈëËùÓĞ½Ó¿ÚÊôĞÔ
+                // å¦‚æœå°šæœªåˆå§‹åŒ–ï¼Œåˆ™åˆ›å»ºä¸€ä¸ªæ–°å®ä¾‹å¹¶è®¾ç½®ä¸ºæ³¨å…¥æ‰€æœ‰æ¥å£å±æ€§
                 _allProperties = _allProperties ?? new SnkPropertyInjectorOptions()
                 {
                     InjectIntoProperties = SnkPropertyInjection.AllInterfaceProperties,

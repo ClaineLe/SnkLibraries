@@ -1,15 +1,15 @@
-namespace SnkDependencyInjection
+﻿namespace SnkDependencyInjection
 {
     /// <summary>
-    /// ��������ע�����ӿڡ�
+    /// 定义属性注入器接口。
     /// </summary>
     public interface ISnkPropertyInjector
     {
         /// <summary>
-        /// ��Ŀ�����ע�����ԡ�
+        /// 向目标对象注入属性。
         /// </summary>
-        /// <param name="target">Ŀ�����ע�뽫Ӧ���ڸö�������ԡ�</param>
-        /// <param name="options">��ѡ������ע����ѡ���������ע����Ϊ��</param>
+        /// <param name="target">目标对象，注入将应用于该对象的属性。</param>
+        /// <param name="options">可选的属性注入器选项，用于配置注入行为。</param>
         void Inject(object target, ISnkPropertyInjectorOptions options = null);
     }
 }
