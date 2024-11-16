@@ -12,10 +12,12 @@ namespace SnkDependencyInjection
     /// </summary>
     public sealed partial class SnkDIContainer : ISnkDIProvider
     {
+        private static readonly ResolverType? ResolverTypeNoneSpecified = null;
+
         /// <summary>
         /// 存储类型与其对应的解析器的字典。
         /// </summary>
-        private readonly Dictionary<Type, IResolver> _resolvers = new Dictionary<Type, IResolver>();
+        private readonly Dictionary<Type, List<IResolver>> _resolvers = new Dictionary<Type, List<IResolver>>();
 
         /// <summary>
         /// 用于检测循环依赖的字典。
@@ -149,6 +151,40 @@ namespace SnkDependencyInjection
         }
 
         /// <summary>
+        /// 尝试解析指定类型的实例集合。
+        /// </summary>
+        /// <typeparam name="T">要解析的类型。</typeparam>
+        /// <param name="resolved">解析后的实例集合。</param>
+        /// <returns>如果解析成功，返回 true；否则返回 false。</returns>
+        public bool TryResolves<T>(out IEnumerable<T> resolved) where T : class
+        {
+            if (this._resolvers.TryGetValue(typeof(T), out var list) == false)
+            {
+                resolved = Enumerable.Empty<T>();
+                return false;
+            }
+            resolved = list.Cast<T>();
+            return true;
+        }
+
+        /// <summary>
+        /// 尝试解析指定类型的实例集合。
+        /// </summary>
+        /// <param name="type">要解析的类型。</param>
+        /// <param name="resolved">解析后的实例集合。</param>
+        /// <returns>如果解析成功，返回 true；否则返回 false。</returns>
+        public bool TryResolves(Type type, out IEnumerable<object> resolved)
+        {
+            if (this._resolvers.TryGetValue(type, out var list) == false)
+            {
+                resolved = Enumerable.Empty<object>();
+                return false;
+            }
+            resolved = list;
+            return true;
+        }
+
+        /// <summary>
         /// 解析指定类型的实例，当解析失败时抛出异常。
         /// </summary>
         /// <typeparam name="T">要解析的类型。</typeparam>
@@ -175,6 +211,30 @@ namespace SnkDependencyInjection
                 }
                 return resolved;
             }
+        }
+
+        /// <summary>
+        /// 解析指定类型的实例集合。
+        /// </summary>
+        /// <typeparam name="T">要解析的类型。</typeparam>
+        /// <returns>解析后的实例集合。</returns>
+        public IEnumerable<T> Resolves<T>() where T : class
+        {
+            if (this._resolvers.TryGetValue(typeof(T), out var list) == false)
+                return Enumerable.Empty<T>();
+            return list.Cast<T>();
+        }
+
+        /// <summary>
+        /// 解析指定类型的实例集合。
+        /// </summary>
+        /// <param name="type">要解析的类型。</param>
+        /// <returns>解析后的实例集合。</returns>
+        public IEnumerable<object> Resolves(Type type)
+        {
+            if (this._resolvers.TryGetValue(type, out var list) == false)
+                return Enumerable.Empty<object>();
+            return list;
         }
 
         /// <summary>
@@ -457,9 +517,6 @@ namespace SnkDependencyInjection
         /// <returns>子容器实例。</returns>
         public ISnkDIProvider CreateChildContainer() => new SnkDIContainer(this);
 
-
-        private static readonly ResolverType? ResolverTypeNoneSpecified = null;
-
         /// <summary>
         /// 构建指定类型的实例，并注入属性。
         /// </summary>
@@ -615,17 +672,24 @@ namespace SnkDependencyInjection
         /// <returns>如果找到解析器，返回 true；否则返回 false。</returns>
         private bool TryGetResolver(Type type, out IResolver resolver)
         {
-            if (_resolvers.TryGetValue(type, out resolver))
+            if (_resolvers.TryGetValue(type, out var list))
             {
-                return true;
+                resolver = list.FirstOrDefault();
+                return resolver != null;
             }
 
-            if (!type.GetTypeInfo().IsGenericType)
+            if (type.IsGenericType)
             {
-                return false;
+                var genericTypeDefinition = type.GetGenericTypeDefinition();
+                if (_resolvers.TryGetValue(genericTypeDefinition, out list))
+                {
+                    resolver = list.FirstOrDefault();
+                    return resolver != null;
+                }
             }
 
-            return _resolvers.TryGetValue(type.GetTypeInfo().GetGenericTypeDefinition(), out resolver);
+            resolver = null;
+            return false;
         }
 
         /// <summary>
@@ -660,7 +724,12 @@ namespace SnkDependencyInjection
         {
             lock (_locker)
             {
-                _resolvers[interfaceType] = resolver;
+                if (_resolvers.TryGetValue(interfaceType, out var list) == false)
+                {
+                    list = new List<IResolver>();
+                    _resolvers.Add(interfaceType, list);
+                }
+                list.Add(resolver);
             }
         }
 

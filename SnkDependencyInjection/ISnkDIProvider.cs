@@ -30,11 +30,25 @@ namespace SnkDependencyInjection
         T Resolve<T>() where T : class;
 
         /// <summary>
+        /// 解析指定类型的实例集合。
+        /// </summary>
+        /// <typeparam name="T">要解析的类型。</typeparam>
+        /// <returns>解析后的实例集合。</returns>
+        IEnumerable<T> Resolves<T>() where T : class;
+
+        /// <summary>
         /// 解析指定类型的实例。
         /// </summary>
         /// <param name="type">要解析的类型。</param>
         /// <returns>解析后的实例。</returns>
         object Resolve(Type type);
+
+        /// <summary>
+        /// 解析指定类型的实例集合。
+        /// </summary>
+        /// <param name="type">要解析的类型。</param>
+        /// <returns>解析后的实例集合。</returns>
+        IEnumerable<object> Resolves(Type type);
 
         /// <summary>
         /// 尝试解析指定类型的实例。
@@ -45,12 +59,28 @@ namespace SnkDependencyInjection
         bool TryResolve<T>(out T resolved) where T : class;
 
         /// <summary>
+        /// 尝试解析指定类型的实例集合。
+        /// </summary>
+        /// <typeparam name="T">要解析的类型。</typeparam>
+        /// <param name="resolved">解析后的实例集合。</param>
+        /// <returns>如果解析成功，返回 true；否则返回 false。</returns>
+        bool TryResolves<T>(out IEnumerable<T> resolved) where T : class;
+
+        /// <summary>
         /// 尝试解析指定类型的实例。
         /// </summary>
         /// <param name="type">要解析的类型。</param>
         /// <param name="resolved">解析后的实例。</param>
         /// <returns>如果解析成功，返回 true；否则返回 false。</returns>
         bool TryResolve(Type type, out object resolved);
+
+        /// <summary>
+        /// 尝试解析指定类型的实例集合。
+        /// </summary>
+        /// <param name="type">要解析的类型。</param>
+        /// <param name="resolved">解析后的实例集合。</param>
+        /// <returns>如果解析成功，返回 true；否则返回 false。</returns>
+        bool TryResolves(Type type, out IEnumerable<object> resolved);
 
         /// <summary>
         /// 创建指定类型的实例。
