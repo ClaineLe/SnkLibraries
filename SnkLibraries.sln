@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnkDependencyInjection", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnkLogging", "SnkLogging\SnkLogging.csproj", "{29584973-03D7-4E78-8B6E-17300EB85D9F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnkConnection", "SnkConnection\SnkConnection.csproj", "{F6784249-4890-46FB-91D8-DA6F68AD6FFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{29584973-03D7-4E78-8B6E-17300EB85D9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29584973-03D7-4E78-8B6E-17300EB85D9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29584973-03D7-4E78-8B6E-17300EB85D9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6784249-4890-46FB-91D8-DA6F68AD6FFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6784249-4890-46FB-91D8-DA6F68AD6FFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6784249-4890-46FB-91D8-DA6F68AD6FFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6784249-4890-46FB-91D8-DA6F68AD6FFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
