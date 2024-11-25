@@ -15,8 +15,8 @@ namespace SnkConnection
             protected int receiveBufferSize;
             protected int sendBufferSize;
 
-            protected SnkBinaryReader reader;
-            protected SnkBinaryWriter writer;
+            protected ISnkNetworkReader reader;
+            protected ISnkNetworkWriter writer;
 
             protected ISnkMessageEncode<TMessage> encoder;
             protected ISnkMessageDecode<TMessage> decoder;

@@ -1,23 +1,25 @@
-﻿using System.IO;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace SnkConnection
 {
     namespace IO
     {
-        public sealed class SnkBinaryReader : SnkBinaryStream
+        public class SnkNetworkReader : SnkNetworkStream, ISnkNetworkReader
         {
-            private byte[] buffer;
+            public override int BufferSize { get; }
 
-            public SnkBinaryReader(Socket socket, bool isBigEndian) : base(socket, isBigEndian)
+            protected byte[] buffer;
+
+            public SnkNetworkReader(Socket socket, bool isBigEndian) : base(socket, isBigEndian)
             {
-                buffer = new byte[socket.ReceiveBufferSize * 2];
+                BufferSize = socket.ReceiveBufferSize * 2;
+                buffer = new byte[BufferSize];
             }
 
             public async Task<ushort> ReadUInt16()
             {
-                await ReadBytes(buffer, 0, 2).ConfigureAwait(false);
+                await ReadAsync(buffer, 0, 2).ConfigureAwait(false);
                 if (isBigEndian)
                     return (ushort)(buffer[1] | buffer[0] << 8);
                 else
@@ -26,7 +28,7 @@ namespace SnkConnection
 
             public async Task<short> ReadInt16()
             {
-                await ReadBytes(buffer, 0, 2).ConfigureAwait(false);
+                await ReadAsync(buffer, 0, 2).ConfigureAwait(false);
                 if (isBigEndian)
                     return (short)(buffer[1] | buffer[0] << 8);
                 else
@@ -35,7 +37,7 @@ namespace SnkConnection
 
             public async Task<uint> ReadUInt32()
             {
-                await ReadBytes(buffer, 0, 4).ConfigureAwait(false);
+                await ReadAsync(buffer, 0, 4).ConfigureAwait(false);
                 if (isBigEndian)
                     return (uint)(buffer[3] | buffer[2] << 8 | buffer[1] << 16 | buffer[0] << 24);
                 else
@@ -44,7 +46,7 @@ namespace SnkConnection
 
             public async Task<int> ReadInt32()
             {
-                await ReadBytes(buffer, 0, 4).ConfigureAwait(false);
+                await ReadAsync(buffer, 0, 4).ConfigureAwait(false);
                 if (isBigEndian)
                     return (int)(buffer[3] | buffer[2] << 8 | buffer[1] << 16 | buffer[0] << 24);
                 else
@@ -53,7 +55,7 @@ namespace SnkConnection
 
             public async Task<ulong> ReadUInt64()
             {
-                await ReadBytes(buffer, 0, 8).ConfigureAwait(false);
+                await ReadAsync(buffer, 0, 8).ConfigureAwait(false);
                 if (isBigEndian)
                 {
                     uint lo = (uint)(buffer[7] | buffer[6] << 8 | buffer[5] << 16 | buffer[4] << 24);
@@ -70,7 +72,7 @@ namespace SnkConnection
 
             public async Task<long> ReadInt64()
             {
-                await ReadBytes(buffer, 0, 8).ConfigureAwait(false);
+                await ReadAsync(buffer, 0, 8).ConfigureAwait(false);
                 if (isBigEndian)
                 {
                     uint lo = (uint)(buffer[7] | buffer[6] << 8 | buffer[5] << 16 | buffer[4] << 24);
@@ -87,23 +89,14 @@ namespace SnkConnection
 
             public async Task<byte> ReadByte()
             {
-                await ReadBytes(buffer, 0, 1).ConfigureAwait(false);
+                await ReadAsync(buffer, 0, 1).ConfigureAwait(false);
                 return buffer[0];
             }
 
-            private async Task<int> ReadBytes(byte[] buffer, int offset, int count)
+            public async Task<int> ReadBytes(byte[] buffer, int offset, int count)
             {
-                ValidateDisposed();
-                var n = 0;
-                while (n < count)
-                {
-                    int len = await this.networkStream.ReadAsync(buffer, offset + n, count - n).ConfigureAwait(false);
-                    if (len <= 0)
-                        throw new IOException("Stream is closed.");
-
-                    n += len;
-                }
-                return n;
+                await ReadAsync(buffer, offset, count);
+                return count;
             }
         }
     }

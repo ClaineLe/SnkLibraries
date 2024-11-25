@@ -11,7 +11,7 @@ namespace SnkConnection
         protected void ValidateDisposed()
         {
             if (_disposed)
-                throw new ObjectDisposedException(nameof(SnkBinaryStream));
+                throw new ObjectDisposedException(nameof(SnkNetworkStream));
         }
 
         protected virtual void Dispose(bool disposing)

@@ -47,8 +47,8 @@ namespace SnkConnection
                             {
                                 await _socket.ConnectAsync(address, port).ConfigureAwait(false);
 
-                                this.writer = new SnkBinaryWriter(this._socket, true);
-                                this.reader = new SnkBinaryReader(this._socket, true);
+                                this.writer = new SnkNetworkWriter(this._socket, true);
+                                this.reader = new SnkNetworkReader(this._socket, true);
 
                                 Connected = true;
                                 break;
