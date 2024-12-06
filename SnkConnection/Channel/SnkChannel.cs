@@ -62,6 +62,24 @@ namespace SnkConnection
                 if (writer == null)
                     throw new ArgumentNullException(nameof(writer));
             }
+
+            protected override void OnDispose()
+            {
+                if (encoder != null)
+                {
+                    encoder.Dispose();
+                    encoder = null;
+                }
+
+                if (decoder != null)
+                {
+                    decoder.Dispose();
+                    decoder = null;
+                }
+
+                base.OnDispose();
+            }
+
         }
     }
 }

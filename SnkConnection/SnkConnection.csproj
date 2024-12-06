@@ -44,42 +44,42 @@
     <Compile Include="Channel\ISnkChannel.cs" />
     <Compile Include="Channel\ISnkChannelFactory.cs" />
     <Compile Include="Channel\Kcp\ISnkKcpChannel.cs" />
+    <Compile Include="Channel\SnkChannel.cs" />
+    <Compile Include="Channel\SnkChannelFactory.cs" />
     <Compile Include="Channel\SnkChannelState.cs" />
+    <Compile Include="Channel\Tcp\ISnkTcpChannel.cs" />
+    <Compile Include="Channel\Tcp\SnkTcpChannel.cs" />
+    <Compile Include="Channel\Udp\ISnkUdpChannel.cs" />
     <Compile Include="Codec\ISnkMessageCodec.cs" />
+    <Compile Include="Codec\ISnkMessageCodecFactory.cs" />
+    <Compile Include="Codec\ISnkMessageDecode.cs" />
+    <Compile Include="Codec\ISnkMessageEncode.cs" />
     <Compile Include="Codec\SnkMessageCodec.cs" />
     <Compile Include="Codec\SnkMessageDecode.cs" />
     <Compile Include="Codec\SnkMessageEncode.cs" />
-    <Compile Include="EventArguments\ISnkConnectionEventArgs.cs" />
-    <Compile Include="EventArguments\Implements\SnkConnectEventArgs.cs" />
-    <Compile Include="EventArguments\SnkConnectionEventArgs.cs" />
-    <Compile Include="EventArguments\SnkEventPublisher.cs" />
-    <Compile Include="EventArguments\Implements\SnkExceptionEventArgs.cs" />
     <Compile Include="IO\ISnkNetworkReader.cs" />
     <Compile Include="IO\ISnkNetworkStream.cs" />
     <Compile Include="IO\ISnkNetworkWriter.cs" />
     <Compile Include="IO\SnkByteBuffer.cs" />
     <Compile Include="IO\SnkByteBuffReader.cs" />
     <Compile Include="IO\SnkByteBuffWriter.cs" />
-    <Compile Include="ISnkConnector.cs" />
-    <Compile Include="ISnkConnectorExtensions.cs" />
-    <Compile Include="ISnkMessage.cs" />
-    <Compile Include="Codec\ISnkMessageCodecFactory.cs" />
-    <Compile Include="Codec\ISnkMessageDecode.cs" />
-    <Compile Include="Codec\ISnkMessageEncode.cs" />
-    <Compile Include="Channel\Tcp\ISnkTcpChannel.cs" />
-    <Compile Include="Channel\Udp\ISnkUdpChannel.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IO\SnkNetworkReader.cs" />
     <Compile Include="IO\SnkNetworkStream.cs" />
     <Compile Include="IO\SnkNetworkWriter.cs" />
-    <Compile Include="Channel\SnkChannel.cs" />
-    <Compile Include="Channel\SnkChannelFactory.cs" />
-    <Compile Include="Channel\Tcp\SnkTcpChannel.cs" />
+    <Compile Include="ISnkConnector.cs" />
+    <Compile Include="ISnkMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SnkConnectionDefines.cs" />
     <Compile Include="SnkConnector.cs" />
+    <Compile Include="SnkConnectorName.cs" />
+    <Compile Include="SnkConnectorState.cs" />
     <Compile Include="SnkDisposable.cs" />
-    <Compile Include="EventArguments\SnkEventPublisherExtensions.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\SnkLogging\SnkLogging.csproj">
+      <Project>{29584973-03d7-4e78-8b6e-17300eb85d9f}</Project>
+      <Name>SnkLogging</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

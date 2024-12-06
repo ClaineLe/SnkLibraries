@@ -1,30 +1,24 @@
-﻿using SnkConnection.EventArguments;
-using System;
-using System.Threading;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace SnkConnection
 {
     public interface ISnkConnector : IDisposable
     {
-        Task ConnectAsync(string hostname, int port, int timeoutMilliseconds, CancellationToken cancellationToken);
+        SnkConnectorName ConnectorName { get; }
+
+        StateHandle StateHandler { get; set; }
+
+        ReceiveHandle ReceiveHandler { get; set; }
+
+        ExceptionHandle ExceptionHandler { get; set; }
+
+        Task ConnectAsync(string hostname, int port, int timeoutMilliseconds);
 
         Task Disconnect();
 
-        Task Reconnect(CancellationToken cancellationToken);
-    }
+        Task<ISnkResponse> Request(ISnkRequest request);
 
-    public interface ISnkConnector<TRequest, TResponse, TNotification> : ISnkConnector
-        where TRequest : class, ISnkRequest
-        where TResponse : class, ISnkResponse
-        where TNotification : class, ISnkNotification
-    {
-        EventHandler<TNotification> NotificationHandler { get; set; }
-
-        EventHandler<ISnkConnectionEventArgs> ConnectionEventHandler { get; set; }
-
-        Task<TResponse> Request(TRequest request);
-
-        Task Notify(TResponse response);
+        void Notify(ISnkNotification response);
     }
 }

@@ -1,10 +1,11 @@
-﻿using SnkConnection.Codec;
-using SnkConnection.IO;
-using System;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+
+using SnkConnection.Codec;
+using SnkConnection.IO;
 
 namespace SnkConnection
 {
@@ -26,10 +27,10 @@ namespace SnkConnection
                 public override async Task OpenAsync(string host, int port, int timeoutMilliseconds, CancellationToken cancellationToken)
                 {
                     if (await _connectSemaphore.WaitAsync(timeoutMilliseconds, cancellationToken).ConfigureAwait(false) == false)
-                        throw new Exception($"连接超时或者被取消。");
+                        throw new Exception($"[Net-SnkTcpChannel]连接超时或者被取消。");
 
                     if (_socket != null)
-                        throw new Exception("Socket已存在");
+                        throw new Exception("[Net-SnkTcpChannel]Socket已存在。");
 
                     try
                     {
@@ -50,12 +51,12 @@ namespace SnkConnection
                                 this.writer = new SnkNetworkWriter(this._socket, true);
                                 this.reader = new SnkNetworkReader(this._socket, true);
 
+                                dnsException = null;
                                 Connected = true;
                                 break;
                             }
                             catch(Exception exception)
                             {
-                                Console.WriteLine($"连接失败，地址: {address}, 异常: {exception.Message}");
                                 dnsException = exception;
                             }
                         }
@@ -64,12 +65,12 @@ namespace SnkConnection
                             throw dnsException;
 
                         if (Connected == false)
-                            throw new Exception($"连接失败，未知的异常，或许所有DNS均不可用。 host：{host}");
+                            throw new Exception($"[Net-SnkTcpChannel]连接失败。");
 
                     }
                     catch(Exception exception)
                     {
-                        throw new Exception($"连接异常。主机: {host}, 端口: {port}\n原始异常: {exception.Message}", exception);
+                        throw new Exception($"[Net-SnkTcpChannel]连接异常。", exception);
                     }
                     finally
                     {
@@ -79,19 +80,19 @@ namespace SnkConnection
 
                 public override async Task CloseAsync()
                 {
+                    await _connectSemaphore.WaitAsync().ConfigureAwait(false);
                     try
                     {
-                        await _connectSemaphore.WaitAsync().ConfigureAwait(false);
-                        if (_socket != null) 
+                        if (_socket != null)
                         {
-                            _socket.Shutdown(SocketShutdown.Both);
                             _socket.Close();
+                            _socket.Dispose();
                             Connected = false;
                         }
                     }
                     catch (Exception exception)
                     {
-                        throw new Exception($"断开异常。\n原始异常: {exception.Message}", exception);
+                        throw new Exception($"[Net-SnkTcpChannel]关闭异常。", exception);
                     }
                     finally
                     {
@@ -106,9 +107,9 @@ namespace SnkConnection
                     {
                         _ = CloseAsync();
                     }
-                    catch (Exception ex)
+                    catch (Exception exception)
                     {
-                        Console.WriteLine($"Dispose 异常: {ex.Message}");
+                        throw new Exception($"[Net-SnkTcpChannel]释放异常。", exception);
                     }
                 }
             }

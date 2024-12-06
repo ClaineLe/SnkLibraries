@@ -1,12 +1,24 @@
 ﻿using SnkConnection.IO;
+using SnkLogging;
 using System;
 
 namespace SnkConnection
 {
     public abstract class SnkDisposable : IDisposable 
     {
+        private ISnkLogger _logger;
+        protected ISnkLogger logger 
+        {
+            get 
+            {
+                if (_logger == null)
+                    _logger = SnkLogHost.GetLog(this.GetType().Name);
+                return _logger;
+            }
+        }
 
         private bool _disposed = false;
+        protected bool isDisposed => _disposed;
 
         protected void ValidateDisposed()
         {

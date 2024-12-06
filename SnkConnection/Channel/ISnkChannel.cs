@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 
 namespace SnkConnection
 {
-
-
     namespace Channel
     {
         public interface ISnkChannel<TMessage> : IDisposable where TMessage : ISnkMessage 

@@ -40,12 +40,11 @@ namespace SnkConnection
 
             protected async Task<int> ReadAsync(byte[] buffer, int offset, int count)
             {
-                ValidateDisposed();
                 var n = 0;
-                while (n < count)
+                while (!isDisposed && n < count)
                 {
                     int len = await _networkStream.ReadAsync(buffer, offset + n, count - n).ConfigureAwait(false);
-                    if (len <= 0)
+                    if (len <= 0 || isDisposed)
                         throw new IOException("Stream is closed.");
 
                     n += len;

@@ -13,8 +13,10 @@ namespace SnkConnection
 
             public async Task<TMessage> Decode(ISnkNetworkReader reader)
             {
-                buffReader = buffReader ?? new SnkByteBuffReader(reader.BufferSize, reader.IsBigEndian);
                 await _semaphore.WaitAsync().ConfigureAwait(false);
+                buffReader = buffReader ?? new SnkByteBuffReader(reader.BufferSize, reader.IsBigEndian);
+                this.buffReader.Reset();
+
                 try
                 {
                     return await DecodeProcess(reader).ConfigureAwait(false);

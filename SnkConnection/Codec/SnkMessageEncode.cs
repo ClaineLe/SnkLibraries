@@ -12,9 +12,11 @@ namespace SnkConnection
             protected SnkByteBuffWriter buffWriter;
             public async Task Encode(TMessage message, ISnkNetworkWriter writer)
             {
-                buffWriter = buffWriter ?? new SnkByteBuffWriter(writer.BufferSize, writer.IsBigEndian);
                 await _semaphore.WaitAsync().ConfigureAwait(false);
-                try 
+                buffWriter = buffWriter ?? new SnkByteBuffWriter(writer.BufferSize, writer.IsBigEndian);
+                this.buffWriter.Reset();
+
+                try
                 {
                     await EncodeProcess(message, writer).ConfigureAwait(false);
                 }
